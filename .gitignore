@@ -1,3 +1,5 @@
 .idea/
 target/
 wrapper/
+out/
+lib/postgresql-9.4-1201.jdbc41.jar
