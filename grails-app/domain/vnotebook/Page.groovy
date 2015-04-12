@@ -4,8 +4,11 @@ package vnotebook
  * Represents a single page from a Notebook
  */
 class Page {
-    List<PageContent> contentList
+    List contentList
     String normalizedContent
+
+    static hasMany = [contentList: PageContent]
+    static belongsTo = [notebook: Notebook]
 
     static constraints = {
     }
