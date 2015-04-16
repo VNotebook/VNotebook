@@ -8,6 +8,7 @@
 //= require jquery
 //= require_tree .
 //= require_self
+'use strict';
 
 if (typeof jQuery !== 'undefined') {
 	(function($) {

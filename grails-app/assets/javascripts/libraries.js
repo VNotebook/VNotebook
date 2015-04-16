@@ -1,17 +1,16 @@
 'use strict';
 
-application.controller('LibrariesController', function($scope, $location) {
+application.controller('LibrariesController', function($scope, $location, Elements) {
     var load = function () {
-        $scope.libraries = [
-            {
-                id: 0,
-                title: "prueba 1"
-            },
-            {
-                id: 1,
-                title: "prueba 2"
-            }
-        ]
+        $scope.libraries = [];
+        for(var library in Elements.libraries) {
+            $scope.libraries.push(Elements.libraries[library]);
+        }
+    };
+
+    $scope.selectLibrary = function(index) {
+        var id = $scope.libraries[index].id;
+        $location.path('/cuadernos/:' + id);
     };
 
     load();

@@ -1,0 +1,11 @@
+<div data-ng-controller="NotebooksController">
+    <h1 class="page-header">Cuadernos</h1>
+    <div class="btn-horizontal btn-lg">
+        <button data-ng-repeat="notebook in notebooks" class="btn btn-default" aria-label="Left Align" style="border: 0px solid;">
+            <p>
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+            </p>
+            {{notebook.title}}
+        </button>
+    </div>
+</div>

@@ -12,6 +12,7 @@
 		<script src="js/angular-route.min.js"></script>
 		<asset:javascript src="index.js"/>
 		<asset:javascript src="libraries.js"/>
+		<asset:javascript src="notebooks.js"/>
 	</head>
 	<body data-ng-app="VNoteBookApp">
 		<div data-ng-controller="HeaderController">

@@ -1,7 +1,7 @@
 <div data-ng-controller="LibrariesController">
     <h1 class="page-header">Bibliotecas</h1>
     <div class="btn-horizontal btn-lg">
-        <button data-ng-repeat="library in libraries" class="btn btn-default" aria-label="Left Align" style="border: 0px solid;">
+        <button data-ng-repeat="library in libraries" data-ng-click="selectLibrary($index)" class="btn btn-default" aria-label="Left Align" style="border: 0px solid;">
             <p>
                 <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
             </p>
