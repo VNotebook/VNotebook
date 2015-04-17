@@ -12,5 +12,10 @@ application.controller('NotebooksController', function($scope, $routeParams ,$lo
         }
     };
 
+    $scope.openNotebook = function (index) {
+        var id = $scope.notebooks[index].id;
+        $location.path('/cuaderno/:' + id);
+    };
+
     load();
 });

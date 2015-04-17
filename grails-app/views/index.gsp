@@ -8,11 +8,13 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<asset:stylesheet src="navBar.css"/>
 		<asset:stylesheet src="libraryButtons.css"/>
+		<asset:stylesheet src="notebookTemplate.css"/>
 		<script src="js/angular.min.js"></script>
 		<script src="js/angular-route.min.js"></script>
 		<asset:javascript src="index.js"/>
 		<asset:javascript src="libraries.js"/>
 		<asset:javascript src="notebooks.js"/>
+		<asset:javascript src="notebook.js"/>
 	</head>
 	<body data-ng-app="VNoteBookApp">
 		<div data-ng-controller="HeaderController">

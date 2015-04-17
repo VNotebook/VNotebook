@@ -1,0 +1,17 @@
+<div id="notebook" data-ng-controller="NotebookController" style="background-color: rgb(100, 100, 100); width: 100%; height: 100%;">
+    <div id="left-button-panel" align="left">
+        <button data-ng-repeat="button in leftPanel" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
+                <span class="{{button.buttonClass}}" aria-hidden="true"></span>
+        </button>
+    </div>
+
+    <div id="canvas-container" align="center">
+        <canvas data-ng-model="notebook" width="100%" height="100%" style="background-color: rgba(0, 0, 0, 0.2)"></canvas>
+    </div>
+
+    <div id="right-button-panel" align="right">
+        <button data-ng-repeat="button in rightPanel" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
+                <span class="{{button.buttonClass}}" aria-hidden="true"></span>
+        </button>
+    </div>
+</div>

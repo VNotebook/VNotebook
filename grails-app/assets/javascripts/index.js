@@ -11,6 +11,10 @@ var application = angular.module('VNoteBookApp', ['ngRoute'])
                 templateUrl: "html/notebooks.html",
                 controller: 'NotebooksController'
             })
+            .when('/cuaderno/:notebookId', {
+                templateUrl: "html/notebook.html",
+                controller: "NotebookController"
+            })
             .when('/configuracion', {
                 templateUrl: 'html/config.html',
                 controller: 'ConfigurationController'
@@ -49,6 +53,30 @@ var application = angular.module('VNoteBookApp', ['ngRoute'])
                 {
                     id: 3,
                     title: "cuaderno 3"
+                }
+            ],
+            widgetsPanel : [
+                {
+                    id: 0,
+                    title: "widget 1",
+                    buttonClass: "glyphicon glyphicon-camera"
+                },
+                {
+                    id: 0,
+                    title: "widget 2",
+                    buttonClass: "glyphicon glyphicon-edit"
+                }
+            ],
+            toolsPanel : [
+                {
+                    id: 0,
+                    title: "editar",
+                    buttonClass: "glyphicon glyphicon-pencil"
+                },
+                {
+                    id: 0,
+                    title: "borrar",
+                    buttonClass: "gglyphicon glyphicon-apple"
                 }
             ]
         };
