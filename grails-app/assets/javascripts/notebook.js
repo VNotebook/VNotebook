@@ -43,7 +43,6 @@ application.controller('NotebookController', function($scope, $location, $routeP
     ];
 
     var load = function () {
-        var notebookId = parseInt($routeParams.notebookId.replace(':', ''));
 
         // Load something
     };

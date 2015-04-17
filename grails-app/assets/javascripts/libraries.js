@@ -10,7 +10,7 @@ application.controller('LibrariesController', function($scope, $location, Elemen
 
     $scope.selectLibrary = function(index) {
         var id = $scope.libraries[index].id;
-        $location.path('/cuadernos/:' + id);
+        $location.path('/cuadernos/' + id);
     };
 
     load();

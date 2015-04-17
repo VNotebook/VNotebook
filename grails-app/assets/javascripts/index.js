@@ -55,7 +55,20 @@ var application = angular.module('VNoteBookApp', ['ngRoute'])
                     title: "Cuaderno 3"
                 }
             ],
-
+            getLibraryById : function (id) {
+                for(var i = 0; i < this.libraries.length; ++i) {
+                    if(this.libraries[i].id == id) {
+                        return this.libraries[i];
+                    }
+                }
+            },
+            getNotebookById : function (id) {
+                for(var i = 0; i < this.notebooks.length; ++i) {
+                    if(this.notebooks[i].id == id) {
+                        return this.notebooks[i];
+                    }
+                }
+            }
         };
     });
 
