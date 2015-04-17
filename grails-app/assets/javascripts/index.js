@@ -28,57 +28,34 @@ var application = angular.module('VNoteBookApp', ['ngRoute'])
             libraries : [
                 {
                     id: 0,
-                    title: "biblioteca 1",
+                    title: "Biblioteca 1",
                     notebooks: [0, 1]
                 },
                 {
                     id: 1,
-                    title: "biblioteca 2",
+                    title: "Biblioteca 2",
                     notebooks: [2, 3]
                 }
             ],
             notebooks : [
                 {
                     id: 0,
-                    title: "cuaderno 0"
+                    title: "Cuaderno 0"
                 },
                 {
                     id: 1,
-                    title: "cuaderno 1"
+                    title: "Cuaderno 1"
                 },
                 {
                     id: 2,
-                    title: "cuaderno 2"
+                    title: "Cuaderno 2"
                 },
                 {
                     id: 3,
-                    title: "cuaderno 3"
+                    title: "Cuaderno 3"
                 }
             ],
-            widgetsPanel : [
-                {
-                    id: 0,
-                    title: "widget 1",
-                    buttonClass: "glyphicon glyphicon-camera"
-                },
-                {
-                    id: 0,
-                    title: "widget 2",
-                    buttonClass: "glyphicon glyphicon-edit"
-                }
-            ],
-            toolsPanel : [
-                {
-                    id: 0,
-                    title: "editar",
-                    buttonClass: "glyphicon glyphicon-pencil"
-                },
-                {
-                    id: 0,
-                    title: "borrar",
-                    buttonClass: "gglyphicon glyphicon-apple"
-                }
-            ]
+
         };
     });
 
