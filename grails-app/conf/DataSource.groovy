@@ -28,6 +28,10 @@ environments {
         dataSource {
             dbCreate = "update"
             url = "jdbc:h2:mem:testDb"
+            driverClassName = "org.h2.Driver"
+            username = ""
+            password = ""
+            dialect = org.hibernate.dialect.H2Dialect
         }
     }
     production {
