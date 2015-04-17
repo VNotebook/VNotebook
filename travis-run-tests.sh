@@ -1,3 +1,3 @@
-./grailsw refresh-dependencies --non-interactive
-./grailsw compile --non-interactive
-./grailsw test-app --non-interactive
+./grailsw refresh-dependencies
+./grailsw compile
+./grailsw test-app
