@@ -1,10 +1,11 @@
 package vnotebook
 
 class Notebook {
-
     String name
     User owner
-    List<Page> pages
+    Collection pages
+
+    static hasMany = [pages: Page]
 
     static constraints = {
     }

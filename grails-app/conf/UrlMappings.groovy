@@ -1,6 +1,7 @@
 class UrlMappings {
 
 	static mappings = {
+        "/widgets"(resources: "widget")
         "/$controller/$action?/$id?(.$format)?"{
             constraints {
                 // apply constraints here
