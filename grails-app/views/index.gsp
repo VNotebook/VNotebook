@@ -16,8 +16,8 @@
 		<asset:javascript src="notebooks.js"/>
 		<asset:javascript src="notebook.js"/>
 	</head>
-	<body data-ng-app="VNoteBookApp">
-		<div data-ng-controller="HeaderController">
+	<body ng-app="VNoteBookApp">
+		<div ng-controller="HeaderController">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="container">
 					<div class="navbar-header">
@@ -32,7 +32,7 @@
 		</div>
 
 		<div class="container">
-			<div data-ng-view></div>
+			<div ng-view></div>
 		</div>
 	</body>
 </html>
