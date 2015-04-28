@@ -48,4 +48,9 @@ application.controller('NotebookController', function($scope, $location, $routeP
     };
 
     load();
+})
+.directive('notebookSheet', function() {
+    return {
+        templateUrl: 'html/sheet.html'
+    };
 });

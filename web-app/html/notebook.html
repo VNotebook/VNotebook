@@ -5,9 +5,8 @@
         </button>
     </div>
 
-    <div id="canvas-container" align="center">
-        <canvas ng-model="notebook" width="1280" height="1080" style="background-color: rgba(0, 0, 0, 0.2)"></canvas>
-    </div>
+    <notebook-sheet id="canvas-container" align="center">
+    </notebook-sheet>
 
     <div ng-model="rightPanel" id="right-button-panel" align="right">
         <button data-ng-repeat="button in rightPanel" data-ng-click="button.action()" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
