@@ -1,17 +1,11 @@
-<div id="notebook" ng-controller="NotebookController" style="background-color: rgb(100, 100, 100); width: 100%; height: 100%;">
-    <div ng-model="leftPanel" id="left-button-panel" align="left">
-        <button ng-repeat="button in leftPanel" data-ng-click="button.action()" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
-                <span class="{{button.buttonClass}}" aria-hidden="true"></span>
-        </button>
-    </div>
-
-    <div id="canvas-container" align="center">
-        <canvas ng-model="notebook" width="1280" height="1080" style="background-color: rgba(0, 0, 0, 0.2)"></canvas>
-    </div>
-
-    <div ng-model="rightPanel" id="right-button-panel" align="right">
-        <button data-ng-repeat="button in rightPanel" data-ng-click="button.action()" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
-                <span class="{{button.buttonClass}}" aria-hidden="true"></span>
+<div ng-controller="NotebooksController">
+    <h1 class="page-header">Cuadernos</h1>
+    <div class="btn-horizontal btn-lg">
+        <button ng-repeat="notebook in notebooks" data-ng-click="openNotebook($index)" class="btn btn-default" aria-label="Left Align" style="border: 0px solid;">
+            <p>
+                <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+            </p>
+            {{notebook.title}}
         </button>
     </div>
 </div>
