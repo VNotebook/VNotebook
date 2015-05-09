@@ -12,6 +12,12 @@ application.controller('NotebookController', function($scope, $location, $routeP
         // do something here
     };
 
+    $scope.swap = {
+        title: "Cambiar",
+        buttonClass: "glyphicon glyphicon-transfer",
+        action: $scope.changePosition
+    };
+
     $scope.leftPanel = [
         {
             title: "Widget 1",
@@ -34,11 +40,6 @@ application.controller('NotebookController', function($scope, $location, $routeP
             title: "Borrar",
             buttonClass: "glyphicon glyphicon-erase",
             action: $scope.doNothing
-        },
-        {
-            title: "Cambiar",
-            buttonClass: "glyphicon glyphicon-transfer",
-            action: $scope.changePosition
         }
     ];
 
@@ -60,6 +61,10 @@ application.controller('NotebookController', function($scope, $location, $routeP
             // the last coordinates before the current move
             var lastX;
             var lastY;
+
+            ctx.fillStyle = "blue";
+            ctx.font = "bold 16px Arial";
+            ctx.fillText("Zibri", 100, 100);
 
             element.bind('mousedown', function(event){
                 if(event.offsetX !== undefined){
