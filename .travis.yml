@@ -1,0 +1,7 @@
+language: groovy
+jdk:
+- oraclejdk7
+before_script:
+ - chmod +x grailsw
+ - chmod +x travis-run-tests.sh
+script: "./travis-run-tests.sh"
