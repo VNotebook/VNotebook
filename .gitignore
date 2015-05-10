@@ -1,3 +1,6 @@
 .idea/
 target/
 wrapper/
+
+vnotebook.iml
+vnotebook-grailsPlugins.iml
