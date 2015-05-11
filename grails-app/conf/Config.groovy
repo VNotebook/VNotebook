@@ -115,3 +115,29 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'vnotebook.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'vnotebook..UserRole'
+grails.plugin.springsecurity.authority.className = 'vnotebook..Role'
+grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
+grails.plugin.springsecurity.interceptUrlMap = [
+        '/':                    ['permitAll'],
+        '/index':               ['permitAll'],
+        '/index.gsp':           ['permitAll'],
+        '/**':                  ['isFullyAuthenticated()']
+]
+grails.plugin.springsecurity.filterChain.chainMap = [
+        '/**': 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'   // Traditional chain
+]
+
+grails.plugin.springsecurity.rememberMe.persistent = false
+grails.plugin.springsecurity.rest.login.useJsonCredentials = true
+grails.plugin.springsecurity.rest.login.failureStatusCode = 401
+grails.plugin.springsecurity.rest.token.storage.useGorm = true
+grails.plugin.springsecurity.rest.token.storage.gorm.tokenDomainClassName = 'vnotebook.AuthenticationToken'
+grails.plugin.springsecurity.rest.token.storage.gorm.tokenValuePropertyName = 'token'
+grails.plugin.springsecurity.rest.token.storage.gorm.usernamePropertyName = 'username'
+
+grails.plugin.springsecurity.rest.token.validation.headerName = 'X-Auth-Token'
+grails.plugin.springsecurity.rest.token.validation.useBearerToken = false
