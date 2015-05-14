@@ -5,16 +5,9 @@
 		<title>VNoteBook</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<asset:stylesheet src="navBar.css"/>
-		<asset:stylesheet src="libraryButtons.css"/>
-		<asset:stylesheet src="notebookTemplate.css"/>
-		<script src="js/angular.min.js"></script>
-		<script src="js/angular-route.min.js"></script>
-		<asset:javascript src="index.js"/>
-		<asset:javascript src="libraries.js"/>
-		<asset:javascript src="notebooks.js"/>
-		<asset:javascript src="notebook.js"/>
+		<link rel="stylesheet" href="css/notebookTemplate.min.css">
+		<link rel="stylesheet" href="css/navBar.min.css">
+		<link rel="stylesheet" href="css/libraryButtons.min.css">
 	</head>
 	<body ng-app="VNoteBookApp">
 		<div ng-controller="HeaderController">
@@ -34,6 +27,19 @@
 		<div class="container">
 			<div ng-view></div>
 		</div>
+
+		<!-- Vendor JS -->
+		<script src="lib/angular/angular.min.js"></script>
+		<script src="lib/angular-route/angular-route.min.js"></script>
+
+		<!-- inject:js -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers/header.js"></script>
+    <script src="js/controllers/libraries.js"></script>
+    <script src="js/controllers/notebook.js"></script>
+    <script src="js/controllers/notebooks.js"></script>
+    <script src="js/directives/notebookSheet.js"></script>
+    <script src="js/services/elements.js"></script>
+    <!-- endinject -->
 	</body>
 </html>
-

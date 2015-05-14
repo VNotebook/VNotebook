@@ -1,0 +1,31 @@
+{
+  "name": "VNotebook-client",
+  "version": "0.0.0",
+  "description": "",
+  "dependencies": {
+    "gulp": "~3.8.11",
+    "gulp-minify-css": "~1.1.1",
+    "gulp-sass": "~2.0.1",
+    "gulp-rename": "~1.2.2"
+  },
+  "devDependencies": {
+    "bower": "~1.4.1",
+    "karma-chrome-launcher": "~0.1.12",
+    "jasmine-core": "~2.3.4",
+    "karma-jasmine": "~0.3.5",
+    "jasmine": "~2.3.1",
+    "gulp-inject": "~1.2.0",
+    "karma": "~0.12.31",
+    "karma-phantomjs-launcher": "~0.1.4",
+    "gulp-connect": "~2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VNotebook/VNotebook"
+  },
+  "author": "VNotebook team",
+  "bugs": {
+    "url": "https://github.com/VNotebook/VNotebook/issues"
+  },
+  "homepage": "https://github.com/VNotebook/VNotebook"
+}
