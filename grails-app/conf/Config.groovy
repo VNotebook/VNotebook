@@ -118,26 +118,40 @@ log4j.main = {
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'vnotebook.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'vnotebook..UserRole'
-grails.plugin.springsecurity.authority.className = 'vnotebook..Role'
-grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'vnotebook.UserRole'
+grails.plugin.springsecurity.authority.className = 'vnotebook.Role'
+grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
 grails.plugin.springsecurity.interceptUrlMap = [
-        '/':                    ['permitAll'],
-        '/index':               ['permitAll'],
-        '/index.gsp':           ['permitAll'],
-        '/**':                  ['isFullyAuthenticated()']
+        '/':                  ['permitAll'],
+        '/index':             ['permitAll'],
+        '/index.gsp':         ['ROLE_USER'],
+        '/assets/**':         ['permitAll'],
+        '/**/js/**':          ['permitAll'],
+        '/**/css/**':         ['permitAll'],
+        '/**/images/**':      ['permitAll'],
+        '/**/favicon.ico':    ['ROLE_FINANCE', 'isFullyAuthenticated()'],
+        '/login/**':          ['permitAll'],
+        '/logout/**':         ['permitAll'],
+        '/secure/**':         ['ROLE_ADMIN']
 ]
-grails.plugin.springsecurity.filterChain.chainMap = [
-        '/**': 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'   // Traditional chain
-]
-
-grails.plugin.springsecurity.rememberMe.persistent = false
-grails.plugin.springsecurity.rest.login.useJsonCredentials = true
-grails.plugin.springsecurity.rest.login.failureStatusCode = 401
-grails.plugin.springsecurity.rest.token.storage.useGorm = true
-grails.plugin.springsecurity.rest.token.storage.gorm.tokenDomainClassName = 'vnotebook.AuthenticationToken'
-grails.plugin.springsecurity.rest.token.storage.gorm.tokenValuePropertyName = 'token'
-grails.plugin.springsecurity.rest.token.storage.gorm.usernamePropertyName = 'username'
-
+grails.plugin.springsecurity.rest.login.active=true
+grails.plugin.springsecurity.rest.login.endpointUrl='/auth/login'
+grails.plugin.springsecurity.rest.login.failureStatusCode=401
+grails.plugin.springsecurity.rest.login.useJsonCredentials=true
+grails.plugin.springsecurity.rest.login.usernamePropertyName='username'
+grails.plugin.springsecurity.rest.login.passwordPropertyName='password'
+grails.plugin.springsecurity.rest.logout.endpointUrl='/auth/logout'
+grails.plugin.springsecurity.rest.token.storage.useGorm=true
+grails.plugin.springsecurity.rest.token.storage.gorm.tokenDomainClassName='vnotebook.AuthenticationToken'
+grails.plugin.springsecurity.rest.token.storage.gorm.tokenValuePropertyName='token'
+grails.plugin.springsecurity.rest.token.storage.gorm.usernamePropertyName='username'
+grails.plugin.springsecurity.rest.token.generation.useSecureRandom=true
+grails.plugin.springsecurity.rest.token.generation.useUUID=false
+grails.plugin.springsecurity.rest.token.validation.active=true
+grails.plugin.springsecurity.rest.token.validation.endpointUrl='/auth/validate'
 grails.plugin.springsecurity.rest.token.validation.headerName = 'X-Auth-Token'
 grails.plugin.springsecurity.rest.token.validation.useBearerToken = false
+grails.plugin.springsecurity.useSecurityEventListener = true
+grails.plugin.springsecurity.onAbstractAuthenticationFailureEvent = { e, appCtx ->
+    println "\nERROR auth failed for user $e.authentication.name: $e.exception.message\n"
+}

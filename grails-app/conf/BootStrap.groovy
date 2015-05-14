@@ -5,7 +5,7 @@ import vnotebook.UserRole
 class BootStrap {
 
     def init = { servletContext ->
-        User user = new User(username: "test", password: "test123", enabled: false, email: "test@test.com",
+        User user = new User(username: "test", password: "test123", accountExpired: false, email: "test@test.com",
                 firstName: "Test", lastName: "VNoteBook")
         user.save()
 

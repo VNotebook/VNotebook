@@ -62,12 +62,10 @@ grails.project.dependency.resolution = {
         compile ':cache:1.1.8'
         compile ":asset-pipeline:1.9.9"
 
-        // security
-        compile ":spring-security-core:2.0-RC4"
-
-        // runtime ":cors:1.1.6"
-        compile ":spring-security-rest:1.4.0.RC5", {
-            excludes ('cors','spring-security-core')
+        //Authentication
+        compile ':spring-security-core:2.0-RC4'
+        compile ':spring-security-rest:1.5.1', {
+            excludes: 'spring-security-core'
         }
 
         // plugins needed at runtime but not for compilation
