@@ -8,7 +8,7 @@ Web notebook
 
 Make sure you have [npm](https://docs.npmjs.com/getting-started/what-is-npm) installed, `cd` into **angular-app** and execute the following commands:
 
-1. Install Bower (if you haven't already): `npm install -g bower`
+1. Install Bower (if you haven't already) and gulp: `npm install -g bower gulp`
 2. Install the test tools: `npm install -g karma-cli protractor`
 3. Install the dependencies: `npm install` followed by `bower install`
 4. Setup webdriver to run E2E tests: `webdriver-manage update`
