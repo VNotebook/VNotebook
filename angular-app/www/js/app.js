@@ -1,6 +1,6 @@
 'use strict';
 
-var application = angular.module('VNoteBookApp', ['ngRoute']);
+var application = angular.module('VNoteBookApp', ['ngRoute', 'ui.bootstrap']);
 
 application.config( function($routeProvider) {
     $routeProvider
