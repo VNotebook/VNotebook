@@ -1,9 +1,4 @@
-<div id="notebook" ng-controller="NotebookController" style="background-color: rgb(100, 100, 100); width: 100%; height: 100%;">
-    <div align="center" style="background-color: #ffffff">
-        <button ng-click="swap.action()" class="btn btn-default" style="border: 0px;">
-            <span class="{{swap.buttonClass}}" aria-hidden="true"> </span>
-        </button>
-    </div>
+<div id="notebook" style="background-color: rgb(100, 100, 100); width: 100%; height: 100%;">
     <div class="btn-group-vertical" ng-model="leftPanel" id="left-button-panel" align="left">
         <button ng-repeat="button in leftPanel" ng-click="button.action()" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
                 <span class="{{button.buttonClass}}" aria-hidden="true"></span>

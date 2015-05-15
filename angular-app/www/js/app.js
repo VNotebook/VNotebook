@@ -1,6 +1,6 @@
 'use strict';
 
-var application = angular.module('VNoteBookApp', ['ngRoute']);
+var application = angular.module('VNoteBookApp', ['ngRoute', 'ui.bootstrap']);
 
 application.config( function($routeProvider) {
     $routeProvider
@@ -15,10 +15,6 @@ application.config( function($routeProvider) {
         .when('/cuaderno/:notebookId', {
             templateUrl: "templates/notebook.html",
             controller: "NotebookController"
-        })
-        .when('/configuracion', {
-            templateUrl: 'templates/config.html',
-            controller: 'ConfigurationController'
         })
         .otherwise({
             redirectTo: '/bibliotecas'
