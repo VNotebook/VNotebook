@@ -34,7 +34,7 @@ describe("Service: appConfig", function() {
 
     it("should return a default value when calling the getter and no data is " +
     "available in localStorage", function() {
-      spyOn(localStorageService, 'getItem').and.returnValue(undefined);
+      spyOn(localStorageService, 'getItem').and.returnValue(null);
 
       var actualValue = appConfig.getUserIsLeftHanded();
       expect(localStorageService.getItem).toHaveBeenCalledWith(settingKey);
