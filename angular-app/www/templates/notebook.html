@@ -10,7 +10,7 @@
     </div>
 
     <div class="btn-group-vertical" ng-model="rightPanel" id="right-button-panel" align="right">
-        <button data-ng-repeat="button in rightPanel" ng-click="button.action()" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
+        <button ng-repeat="button in rightPanel" ng-click="button.action()" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
                 <span class="{{button.buttonClass}}" aria-hidden="true"></span>
         </button>
     </div>
