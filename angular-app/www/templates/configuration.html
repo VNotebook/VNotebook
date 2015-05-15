@@ -1,0 +1,23 @@
+<div class="modal-header">
+  <h3 class="modal-title">Configuración</h3>
+</div>
+<div class="modal-body">
+  <form ng-submit="save()">
+    <h4>Generales</h4>
+    <div class="form-group">
+      <label>¿Zurdo o diestro?</label>
+      <div>
+        <div class="btn-group">
+          <label class="btn btn-default" ng-model="config.userIsLeftHanded"
+          btn-radio="true">Zurdo</label>
+          <label class="btn btn-default" ng-model="config.userIsLeftHanded"
+          btn-radio="false">Diestro</label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" ng-click="$dismiss()">Cancelar</button>
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+  </form>
+</div>

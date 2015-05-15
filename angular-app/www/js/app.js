@@ -16,10 +16,6 @@ application.config( function($routeProvider) {
             templateUrl: "templates/notebook.html",
             controller: "NotebookController"
         })
-        .when('/configuracion', {
-            templateUrl: 'templates/config.html',
-            controller: 'ConfigurationController'
-        })
         .otherwise({
             redirectTo: '/bibliotecas'
         });
