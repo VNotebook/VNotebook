@@ -65,6 +65,12 @@ grails.project.dependency.resolution = {
         compile ":angular-template-asset-pipeline:2.0.7"
         compile ":twitter-bootstrap:3.3.4"
 
+        //Authentication
+        compile ':spring-security-core:2.0-RC4'
+        compile ':spring-security-rest:1.5.1', {
+            excludes: 'spring-security-core'
+        }
+
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.6.1" // or ":hibernate:3.6.10.18"
         runtime ":database-migration:1.4.0"
