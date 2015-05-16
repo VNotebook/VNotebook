@@ -123,16 +123,15 @@ grails.plugin.springsecurity.authority.className = 'vnotebook.Role'
 grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
 grails.plugin.springsecurity.interceptUrlMap = [
         '/':                  ['permitAll'],
-        '/index':             ['permitAll'],
-        '/index.gsp':         ['ROLE_USER'],
-        '/assets/**':         ['permitAll'],
-        '/**/js/**':          ['permitAll'],
-        '/**/css/**':         ['permitAll'],
-        '/**/images/**':      ['permitAll'],
-        '/**/favicon.ico':    ['ROLE_FINANCE', 'isFullyAuthenticated()'],
+        '/css/**/*':          ['permitAll'],
+        '/fonts/**/*':        ['permitAll'],
+        '/images/**/*':       ['permitAll'],
+        '/js/**/*':           ['permitAll'],
+        '/lib/**/*':          ['permitAll'],
+        '/templates/**/*':    ['permitAll'],
+        '/index.html':        ['permitAll'],
         '/login/**':          ['permitAll'],
-        '/logout/**':         ['permitAll'],
-        '/secure/**':         ['ROLE_ADMIN']
+        '/logout/**':         ['permitAll']
 ]
 grails.plugin.springsecurity.rest.login.active=true
 grails.plugin.springsecurity.rest.login.endpointUrl='/auth/login'
