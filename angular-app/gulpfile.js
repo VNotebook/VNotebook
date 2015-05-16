@@ -100,7 +100,7 @@ gulp.task('dist:clean', function(done) {
     return distFolder + "/" + targetPath;
   });
 
-  del(toClean, done);
+  del(toClean, {force: true}, done);
 });
 
 gulp.task('dist', ['sass', 'index'], function() {
