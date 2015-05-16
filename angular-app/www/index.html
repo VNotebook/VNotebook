@@ -19,10 +19,17 @@
 					<ul class="nav navbar-nav">
 						<li ng-class="{active: isActive('/bibliotecas')}"><a href="#/bibliotecas">Bibliotecas</a></li>
 					</ul>
-					<form class="navbar-form navbar-right" role="configuration">
-						<button type="button" class="btn btn-default"
+					<div class="navbar-right">
+						<span ng-show="isLoggedIn()"><span class="navbar-text">
+							Bienvenido, {{getUser().username}}
+						</span>
+						<button type="button" class="btn btn-default navbar-btn"
+							ng-click="logout()">Salir</button></span>
+						<span ng-hide="isLoggedIn()"><button type="button" class="btn btn-default navbar-btn"
+							ng-click="login()" ng-hide="isLoggedIn()">Ingresar</button></span>
+						<button type="button" class="btn btn-default navbar-btn"
 							ng-click="openConfiguration()">Configuración</button>
-					</form>
+					</div>
 				</div>
 			</nav>
 		</div>
@@ -46,10 +53,12 @@
     <script src="js/controllers/loginDialog.js"></script>
     <script src="js/controllers/notebook.js"></script>
     <script src="js/controllers/notebooks.js"></script>
-    <script src="js/directives/notebookSheet.js"></script>
     <script src="js/services/appConfig.js"></script>
+    <script src="js/services/authInterceptor.js"></script>
+    <script src="js/services/authService.js"></script>
     <script src="js/services/elements.js"></script>
     <script src="js/services/localStorageService.js"></script>
+    <script src="js/services/loginRequestHandler.js"></script>
     <script src="js/directives/notebookSheet.js"></script>
     <!-- endinject -->
 	</body>

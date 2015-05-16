@@ -1,4 +1,5 @@
-application.controller('HeaderController', function($scope, $location, $modal) {
+application.controller('HeaderController', function($scope, $location, $modal,
+  loginRequestHandler, authService) {
   $scope.isActive = function(location) {
     return location.indexOf($location.path()) === 0;
   };
@@ -8,5 +9,20 @@ application.controller('HeaderController', function($scope, $location, $modal) {
       templateUrl: 'templates/configurationDialog.html',
       controller: 'ConfigurationDialogController'
     });
+  };
+
+  $scope.login = function() {
+    loginRequestHandler.requestLogin();
+  };
+
+  $scope.logout = function() {
+    authService.logout();
+  };
+
+  $scope.isLoggedIn = function() {
+    return authService.isLoggedIn();
+  };
+  $scope.getUser = function() {
+    return authService.user;
   };
 });
