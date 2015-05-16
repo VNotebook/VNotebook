@@ -120,8 +120,8 @@ log4j.main = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'vnotebook.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'vnotebook.UserRole'
 grails.plugin.springsecurity.authority.className = 'vnotebook.Role'
-grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
-grails.plugin.springsecurity.interceptUrlMap = [
+grails.plugin.springsecurity.securityConfigType = "Annotation"
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/':                  ['permitAll'],
         '/css/**/*':          ['permitAll'],
         '/fonts/**/*':        ['permitAll'],
@@ -133,19 +133,18 @@ grails.plugin.springsecurity.interceptUrlMap = [
         '/login/**':          ['permitAll'],
         '/logout/**':         ['permitAll']
 ]
-grails.plugin.springsecurity.rest.login.active=true
-grails.plugin.springsecurity.rest.login.endpointUrl='/auth/login'
-grails.plugin.springsecurity.rest.login.failureStatusCode=401
-grails.plugin.springsecurity.rest.login.useJsonCredentials=true
-grails.plugin.springsecurity.rest.login.usernamePropertyName='username'
-grails.plugin.springsecurity.rest.login.passwordPropertyName='password'
-grails.plugin.springsecurity.rest.logout.endpointUrl='/auth/logout'
-grails.plugin.springsecurity.rest.token.storage.useJwt=true
+grails.plugin.springsecurity.rest.login.active = true
+grails.plugin.springsecurity.rest.login.endpointUrl = '/auth/login'
+grails.plugin.springsecurity.rest.login.failureStatusCode = 401
+grails.plugin.springsecurity.rest.login.useJsonCredentials = true
+grails.plugin.springsecurity.rest.login.usernamePropertyName = 'username'
+grails.plugin.springsecurity.rest.login.passwordPropertyName = 'password'
+grails.plugin.springsecurity.rest.token.storage.useJwt = true
 grails.plugin.springsecurity.rest.token.storage.jwt.useSignedJwt = true
-grails.plugin.springsecurity.rest.token.generation.useSecureRandom=true
-grails.plugin.springsecurity.rest.token.generation.useUUID=false
-grails.plugin.springsecurity.rest.token.validation.active=true
-grails.plugin.springsecurity.rest.token.validation.endpointUrl='/auth/validate'
+// The secret should be changed later to a non-default one
+grails.plugin.springsecurity.rest.token.storage.jwt.secret = 'qrD6h8K6S9503Q06Y6Rfk21TErImPYqa'
+grails.plugin.springsecurity.rest.token.validation.active = true
+grails.plugin.springsecurity.rest.token.validation.endpointUrl = '/auth/validate'
 grails.plugin.springsecurity.rest.token.validation.headerName = 'X-Auth-Token'
 grails.plugin.springsecurity.rest.token.validation.useBearerToken = false
 grails.plugin.springsecurity.useSecurityEventListener = true
