@@ -1,4 +1,4 @@
-application.controller('ConfigurationController', function($scope,
+application.controller('ConfigurationDialogController', function($scope,
   appConfig) {
     var config = $scope.config = {
       userIsLeftHanded: appConfig.getUserIsLeftHanded()

@@ -5,8 +5,8 @@ application.controller('HeaderController', function($scope, $location, $modal) {
 
   $scope.openConfiguration = function() {
     $modal.open({
-      templateUrl: 'templates/configuration.html',
-      controller: 'ConfigurationController'
+      templateUrl: 'templates/configurationDialog.html',
+      controller: 'ConfigurationDialogController'
     });
   };
 });
