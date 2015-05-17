@@ -1,17 +1,8 @@
-application.factory('Elements', function() {
+application.factory('Elements', function($http, apiUrl) {
     return {
-        libraries : [
-            {
-                id: 0,
-                title: "Biblioteca 1",
-                notebooks: [0, 1]
-            },
-            {
-                id: 1,
-                title: "Biblioteca 2",
-                notebooks: [2, 3]
-            }
-        ],
+        getLibraries: function() {
+          return $http.get(apiUrl + "/libraries");
+        },
         notebooks : [
             {
                 id: 0,
@@ -30,12 +21,8 @@ application.factory('Elements', function() {
                 title: "Cuaderno 3"
             }
         ],
-        getLibraryById : function (id) {
-            for(var i = 0; i < this.libraries.length; ++i) {
-                if(this.libraries[i].id == id) {
-                    return this.libraries[i];
-                }
-            }
+        getLibraryById: function (id) {
+          return $http.get(apiUrl + "/libraries/" + id);
         },
         getNotebookById : function (id) {
             for(var i = 0; i < this.notebooks.length; ++i) {

@@ -1,11 +1,17 @@
-<div ng-controller="LibrariesController">
+<div>
     <h1 class="page-header">Bibliotecas</h1>
     <div class="btn-horizontal btn-lg">
         <button ng-repeat="library in libraries" ng-click="selectLibrary($index)" class="btn btn-default" aria-label="Left Align" style="border: 0px solid;">
             <p>
                 <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
             </p>
-            {{library.title}}
+            {{library.name}}
         </button>
+    </div>
+
+    <div class="pull-right">
+      <button type="button" class="btn btn-default" ng-click="add()">
+        Crear una biblioteca
+      </button>
     </div>
 </div>

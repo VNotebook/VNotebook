@@ -21,4 +21,5 @@ application.config( function($routeProvider, $httpProvider) {
   });
   $httpProvider.interceptors.push('authInterceptor');
 })
-.constant("tokenUrl", "/vnotebook/auth/login");
+.constant("tokenUrl", "/vnotebook/auth/login")
+.constant("apiUrl", "/vnotebook/api");

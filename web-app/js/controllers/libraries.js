@@ -1,11 +1,14 @@
 'use strict';
 
-application.controller('LibrariesController', function($scope, $location, Elements) {
+application.controller('LibrariesController', function($scope, $location, $modal,
+  Elements) {
     var load = function () {
         $scope.libraries = [];
-        for(var library in Elements.libraries) {
-            $scope.libraries.push(Elements.libraries[library]);
-        }
+        Elements.getLibraries().then(function(response) {
+          $scope.libraries = response.data;
+        }, function() {
+          alert("Error al obtener las bibliotecas");
+        });
     };
 
     $scope.selectLibrary = function(index) {
@@ -13,5 +16,12 @@ application.controller('LibrariesController', function($scope, $location, Elemen
         $location.path('/cuadernos/' + id);
     };
 
-    load();
-});
+    $scope.add = function() {
+      $modal.open({
+        templateUrl: 'templates/libraryEditorDialog.html',
+        controller: 'LibraryEditorDialogController'
+      }).result.then(load);
+    };
+
+
+    load();});
