@@ -4,7 +4,9 @@ class UrlMappings {
         group "/api", {
             "/widgets"(resources: "widget")
             "/users"(resources: "user")
-            "/libraries"(resources: "library")
+            "/libraries"(resources: "library") {
+                "/notebooks"(resources: "notebook")
+            }
         }
 
         "/$controller/$action?/$id?(.$format)?" {
