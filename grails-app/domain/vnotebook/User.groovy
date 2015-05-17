@@ -2,7 +2,6 @@ package vnotebook
 
 import java.security.SecureRandom
 
-// TODO: Complete this class
 class User {
     transient springSecurityService
 
