@@ -1,3 +1,5 @@
+package vnotebook.config
+
 import grails.converters.JSON
 import vnotebook.*
 
@@ -18,6 +20,15 @@ class Marshallers {
                     id: notebook.id,
                     name: notebook.name,
                     libraryId: notebook.library.id
+            ]
+        }
+
+        JSON.registerObjectMarshaller(Widget) { Widget widget ->
+            return [
+                    id: widget.id,
+                    name: widget.name,
+                    description: widget.description,
+                    html: widget.html
             ]
         }
 

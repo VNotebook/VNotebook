@@ -5,6 +5,7 @@ import org.codehaus.groovy.grails.web.json.JSONObject
 import static org.springframework.http.HttpStatus.*
 import grails.converters.JSON
 import spock.lang.*
+import vnotebook.config.Marshallers
 
 abstract class RestfulControllerSpec extends Specification {
     def model
@@ -64,6 +65,10 @@ abstract class RestfulControllerSpec extends Specification {
 
     // End extension points
 
+    def setup() {
+        new Marshallers().registerMarshallers()
+    }
+
     void "Test the index action returns the correct model"() {
         def items = generateInitialItems()
         model.withTransaction {
@@ -81,6 +86,9 @@ abstract class RestfulControllerSpec extends Specification {
     void "Test the show action returns the correct model"() {
         def item = generateInitialItems()[0]
         item.save()
+        def renderedJSON = JSON.use("details") {
+            item as JSON
+        }
 
         when: "The show method is executed"
         params.id = item.id
@@ -88,7 +96,7 @@ abstract class RestfulControllerSpec extends Specification {
 
         then: "The response is correct and returns all data"
         response.status == OK.value()
-        response.text == (item as JSON).toString()
+        response.text == renderedJSON.toString()
     }
 
     void "Test the save action correctly persists an instance"() {
