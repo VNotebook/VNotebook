@@ -5,7 +5,8 @@ application.factory('loginRequestHandler', function($modal) {
     requestLogin: function() {
       return $modal.open({
         templateUrl: 'templates/loginDialog.html',
-        controller: 'LoginDialogController'
+        controller: 'LoginDialogController',
+        size: 'sm'
       }).result;
     }
   };
