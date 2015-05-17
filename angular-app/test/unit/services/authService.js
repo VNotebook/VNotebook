@@ -3,13 +3,14 @@ describe("Service: authService", function() {
     module('VNoteBookApp');
   });
 
-  var authService, $httpBackend, tokenUrl;
+  var authService, $httpBackend, tokenUrl, $rootScope;
 
   beforeEach(function() {
-    inject(function(_authService_, _$httpBackend_, _tokenUrl_) {
+    inject(function(_authService_, _$httpBackend_, _tokenUrl_, _$rootScope_) {
       authService = _authService_;
       $httpBackend = _$httpBackend_;
       tokenUrl = _tokenUrl_;
+      $rootScope = _$rootScope_;
     });
   });
 
@@ -47,6 +48,29 @@ describe("Service: authService", function() {
     expect(authService.token).toBe(null);
     expect(authService.user).toBe(null);
     expect(authService.isLoggedIn()).toBe(false);
+  });
+
+  it("should broadcast auth.changed when logging in or logging out", function() {
+    var raised = false;
+    function onAuthChanged() {
+      raised = true;
+    }
+
+    $rootScope.$on('auth.changed', onAuthChanged);
+
+    authService.token = null;
+
+    $httpBackend.expectPOST(tokenUrl, {"username": "user1", "password": "pass"})
+      .respond(200, '{"access_token": "some token", ' +
+        '"roles": ["ROLE_USER"]}');
+
+    authService.login("user1", "pass");
+    $httpBackend.flush();
+
+    expect(raised).toBe(true);
+    raised = false;
+    authService.logout();
+    expect(raised).toBe(true);
   });
 
   it("should reset the token and user when user logs out", function() {

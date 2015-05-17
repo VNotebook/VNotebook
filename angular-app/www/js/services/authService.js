@@ -1,6 +1,6 @@
 'use strict';
 
-application.factory('authService', function($http, tokenUrl) {
+application.factory('authService', function($http, $rootScope, tokenUrl) {
   var service;
   service = {
     login: function(username, password) {
@@ -20,11 +20,14 @@ application.factory('authService', function($http, tokenUrl) {
           roles: response.data["roles"]
         };
 
+        $rootScope.$broadcast("auth.changed");
+
         return response;
       });
     },
     logout: function() {
       service.token = service.user = null;
+      $rootScope.$broadcast("auth.changed");
     },
     isLoggedIn: function() {
       return service.token != null;

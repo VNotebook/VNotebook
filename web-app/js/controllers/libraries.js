@@ -23,5 +23,7 @@ application.controller('LibrariesController', function($scope, $location, $modal
       }).result.then(load);
     };
 
+    $scope.$on("auth.changed", load);
 
-    load();});
+    load();
+});
