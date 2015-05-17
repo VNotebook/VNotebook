@@ -1,5 +1,6 @@
 package vnotebook
 
+import grails.converters.JSON
 import grails.rest.RestfulController
 
 
@@ -20,10 +21,16 @@ class RestfulControllerBase extends RestfulController {
         return resource
     }
 
-    @Override
-    protected Object queryForResource(Serializable targetId) {
+    protected def querySingle(Serializable targetId) {
         // We have to use build() because chaining where() doesn't work here (GORM bug)
-        return query().build({eq 'id', targetId}).get()
+        return query().build({eq 'id', targetId})
+    }
+
+    @Override
+    protected def queryForResource(Serializable targetId) {
+        return JSON.use("details") {
+            querySingle().get() as JSON
+        }
     }
 
     @Override
