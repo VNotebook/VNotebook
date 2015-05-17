@@ -5,6 +5,7 @@ import grails.plugin.springsecurity.annotation.Secured
 @Secured(['ROLE_USER'])
 class LibraryController extends RestfulControllerBase {
     static responseFormats = ['json']
+    static allowedFields = ['name']
     def springSecurityService
 
     LibraryController() {
@@ -17,5 +18,12 @@ class LibraryController extends RestfulControllerBase {
         return Library.where {
             owner.id == userId
         }
+    }
+
+    @Override
+    protected def getObjectToBind() {
+        def result = request.JSON.subMap(allowedFields)
+        result['owner'] = springSecurityService.loadCurrentUser()
+        return result
     }
 }
