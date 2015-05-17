@@ -151,3 +151,11 @@ grails.plugin.springsecurity.useSecurityEventListener = true
 grails.plugin.springsecurity.onAbstractAuthenticationFailureEvent = { e, appCtx ->
     println "\nERROR auth failed for user $e.authentication.name: $e.exception.message\n"
 }
+
+grails.plugin.springsecurity.filterChain.chainMap = [
+    // Stateless filters for the REST API
+    '/api/**': 'JOINED_FILTERS,-exceptionTranslationFilter,-authenticationProcessingFilter,' +
+            '-securityContextPersistenceFilter,-rememberMeAuthenticationFilter',
+    // Stateful for the rest (pun intended :) )
+    '/**': 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'
+]

@@ -1,8 +1,13 @@
 class UrlMappings {
 
 	static mappings = {
-        "/widgets"(resources: "widget")
-        "/$controller/$action?/$id?(.$format)?"{
+        group "/api", {
+            "/widgets"(resources: "widget")
+            "/users"(resources: "user")
+            "/libraries"(resources: "library")
+        }
+
+        "/$controller/$action?/$id?(.$format)?" {
             constraints {
                 // apply constraints here
             }
