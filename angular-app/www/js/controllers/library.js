@@ -1,12 +1,14 @@
 'use strict';
 
 application.controller('LibraryController', function($scope, $routeParams,
-  $location, Elements) {
+  $location, $modal, Elements) {
+
+  var libraryId = $routeParams.libraryId;
 
   var load = function () {
     $scope.library = null;
-    var id = $routeParams.libraryId;
-    Elements.getLibraryById(id).then(function(response) {
+
+    Elements.getLibraryById(libraryId).then(function(response) {
       $scope.library = response.data;
     });
   };
@@ -14,6 +16,16 @@ application.controller('LibraryController', function($scope, $routeParams,
   $scope.openNotebook = function (notebook) {
     var id = notebook.id;
     $location.path('/cuaderno/' + id);
+  };
+
+  $scope.add = function() {
+    $modal.open({
+      templateUrl: 'templates/notebookEditorDialog.html',
+      controller: 'NotebookEditorDialogController',
+      resolve: {
+        libraryId: function() { return libraryId }
+      }
+    }).result.then(load);
   };
 
   load();
