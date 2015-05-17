@@ -55,10 +55,9 @@ describe('Service: authInterceptor', function() {
     $httpBackend.flush();
   });
 
-  it('should attempt to login and retry the request when the server returns 401',
+  it('should attempt to login and retry the request when the server returns 401 or 403',
   function() {
     var newContent = "some content";
-    $httpBackend.expectGET(endpoint).respond(401, '');
 
     spyOn(loginRequestHandler, 'requestLogin').and
       .callFake(function() {
@@ -73,16 +72,21 @@ describe('Service: authInterceptor', function() {
         return deferred.promise;
       });
 
-    authService.token = null;
+    var statusList = [401, 403];
+    for(var i = 0; i < statusList.length; ++i) {
+      authService.token = null;
+      $httpBackend.expectGET(endpoint).respond(statusList[i], '');
 
-    var response;
-    $http.get(endpoint).then(function(data) {
-      response = data;
-    });
-    $httpBackend.flush();
+      var response;
+      $http.get(endpoint).then(function(data) {
+        response = data;
+      });
+      $httpBackend.flush();
 
-    expect(loginRequestHandler.requestLogin).toHaveBeenCalled();
-    expect(response.data).toBe(newContent);
+      expect(loginRequestHandler.requestLogin).toHaveBeenCalled();
+      expect(response.data).toBe(newContent);
+      loginRequestHandler.requestLogin.calls.reset();
+    }
   });
 
   it('should attempt to login and, if failed, keep the original headers for rejection',

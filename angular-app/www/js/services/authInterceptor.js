@@ -16,7 +16,7 @@ application.factory('authInterceptor', function ($q, $injector) {
     },
     'responseError': function(rejection) {
       if (!rejection.config.skipAuthInterceptor) {
-        if (rejection.status === 401) {
+        if (rejection.status === 401 || rejection.status === 403) {
           var $http = $injector.get('$http');
           var loginRequestHandler = $injector.get('loginRequestHandler');
           var deferred = $q.defer();
