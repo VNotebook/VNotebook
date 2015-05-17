@@ -159,3 +159,6 @@ grails.plugin.springsecurity.filterChain.chainMap = [
     // Stateful for the rest (pun intended :) )
     '/**': 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'
 ]
+grails.plugin.springsecurity.roleHierarchy = '''
+   ROLE_ADMIN > ROLE_USER
+'''
