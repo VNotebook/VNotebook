@@ -22,7 +22,8 @@ class RestfulControllerBase extends RestfulController {
 
     @Override
     protected Object queryForResource(Serializable targetId) {
-        return query().where({id == targetId}).get()
+        // We have to use build() because chaining where() doesn't work here (GORM bug)
+        return query().build({eq 'id', targetId}).get()
     }
 
     @Override
