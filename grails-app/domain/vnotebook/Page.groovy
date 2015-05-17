@@ -8,7 +8,7 @@ class Page {
     String normalizedContent
 
     Date pageDate
-    Date createdDate
+    Date dateCreated
     Date lastUpdated
 
     static belongsTo = [notebook: Notebook]
