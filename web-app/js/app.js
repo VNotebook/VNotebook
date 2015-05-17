@@ -8,9 +8,9 @@ application.config( function($routeProvider, $httpProvider) {
     templateUrl: 'templates/libraries.html',
     controller: 'LibrariesController'
   })
-  .when('/cuadernos/:libraryId', {
-    templateUrl: "templates/notebooks.html",
-    controller: 'NotebooksController'
+  .when('/bibliotecas/:libraryId', {
+    templateUrl: "templates/library.html",
+    controller: 'LibraryController'
   })
   .when('/cuaderno/:notebookId', {
     templateUrl: "templates/notebook.html",

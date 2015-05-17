@@ -1,12 +1,13 @@
 'use strict';
 
-application.controller('NotebooksController', function($scope, $routeParams ,$location, Elements) {
+application.controller('LibraryController', function($scope, $routeParams,
+  $location, Elements) {
 
   var load = function () {
     $scope.library = null;
     var id = $routeParams.libraryId;
     Elements.getLibraryById(id).then(function(response) {
-      $scope.library = response.data.library;
+      $scope.library = response.data;
     });
   };
 

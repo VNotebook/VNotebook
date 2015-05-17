@@ -11,9 +11,8 @@ application.controller('LibrariesController', function($scope, $location, $modal
         });
     };
 
-    $scope.selectLibrary = function(index) {
-        var id = $scope.libraries[index].id;
-        $location.path('/cuadernos/' + id);
+    $scope.selectLibrary = function(library) {
+        $location.path('/bibliotecas/' + library.id);
     };
 
     $scope.add = function() {

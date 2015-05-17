@@ -1,5 +1,5 @@
-<div ng-controller="NotebooksController">
-    <h1 class="page-header">Cuadernos</h1>
+<div>
+    <h1 class="page-header">{{library.name}} <small>(biblioteca)</small></h1>
     <div class="btn-horizontal btn-lg">
         <button ng-repeat="notebook in library.notebooks"
           ng-click="openNotebook(notebook)" class="btn btn-default"
