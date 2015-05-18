@@ -2,13 +2,16 @@
 
 application.directive('notebookSheet', function() {
     return {
+        scope: {
+            mode: '&' // function
+        },
         link: function ($scope, $element, $attr) {
 
-            var Pencil = function() {
+            var Pencil = function(colorArg, widthArg) {
 
-                var color = "#000000";
+                var color = colorArg;
                 var offset = null;
-                var width = 5;
+                var width = widthArg;
                 var opacity = 1.0;
 
                 var drawing = false;
@@ -82,23 +85,35 @@ application.directive('notebookSheet', function() {
                 }
             };
 
-            var sheet = function(pencil) {
+            var sheet = function(currentObject) {
                 var context = Snap($element[0]);
 
                 $element.bind('mousedown', function(event) {
-                    pencil.start(event, context);
+                    currentObject.start(event, context);
                 });
 
                 $element.bind('mousemove', function(event) {
-                    pencil.move(event);
+                    currentObject.move(event);
                 });
 
                 $element.bind('mouseup', function(event) {
-                    pencil.finish();
+                    currentObject.finish();
                 });
             };
 
-            sheet(new Pencil());
+            // If you add some object
+            var elements = {
+                "Draw": new Pencil("#000000", 5),
+                "Erase": new Pencil("#ffffff", 6) //TODO: temporary eraser
+            };
+
+            $scope.$watch('mode()', function() {
+                sheet( elements[$scope.mode()] );
+            });
+
+            $scope.$on("$destroy", function() {
+                $element.unbind();
+            });
         }
     }
 });

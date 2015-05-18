@@ -2,44 +2,52 @@
 
 application.controller('NotebookController', function($scope, $location,
   $routeParams, Elements, appConfig) {
-  var initialLeftPanel = [
-    {
-      title: "Widget 1",
-      buttonClass: "glyphicon glyphicon-camera",
-      action: $scope.doNothing
-    },
-    {
-      title: "Widget 2",
-      buttonClass: "glyphicon glyphicon-edit",
-      action: $scope.doNothing
-    }
-  ];
 
-  var initialRightPanel = [
-    {
-      title: "Editar",
-      buttonClass: "glyphicon glyphicon-pencil",
-      action: $scope.doNothing
-    },
-    {
-      title: "Borrar",
-      buttonClass: "glyphicon glyphicon-erase",
-      action: $scope.doNothing
-    }
-  ];
+    $scope.mode = "Draw"; //Default setting
 
-  $scope.leftPanel = initialLeftPanel;
-  $scope.rightPanel = initialRightPanel;
+    var initialLeftPanel = [
+      {
+        title: "Cámara",
+        buttonClass: "glyphicon glyphicon-camera",
+        action: "Nothing"
+      },
+      {
+        title: "Widget 2",
+        buttonClass: "glyphicon glyphicon-edit",
+        action: "Nothing"
+      }
+    ];
 
-  $scope.$watch(function() {
-    return appConfig.getUserIsLeftHanded();
-  }, function(newValue) {
-    if (newValue) {
-      $scope.leftPanel = initialRightPanel;
-      $scope.rightPanel = initialLeftPanel;
-    } else {
-      $scope.leftPanel = initialLeftPanel;
-      $scope.rightPanel = initialRightPanel;
-    }
-  });
+    var initialRightPanel = [
+      {
+        title: "Dibujar",
+        buttonClass: "glyphicon glyphicon-pencil",
+        action: "Draw"
+      },
+      {
+        title: "Borrar",
+        buttonClass: "glyphicon glyphicon-erase",
+        action: "Erase"
+      }
+    ];
+
+    $scope.leftPanel = initialLeftPanel;
+    $scope.rightPanel = initialRightPanel;
+
+    $scope.$watch(function() {
+      return appConfig.getUserIsLeftHanded();
+    }, function(newValue) {
+      if (newValue) {
+        $scope.leftPanel = initialRightPanel;
+        $scope.rightPanel = initialLeftPanel;
+      } else {
+        $scope.leftPanel = initialLeftPanel;
+        $scope.rightPanel = initialRightPanel;
+      }
+    });
+
+    $scope.defineCurrentObject = function(currentObject) {
+        $scope.mode = currentObject;
+    };
+
 });
