@@ -3,9 +3,23 @@
 application.directive('notebookSheet', function() {
     return {
         scope: {
-            mode: '&' // function
+            mode: '&', // function
+            color: '&',
+            model: '='
         },
         link: function ($scope, $element, $attr) {
+
+            var textGroup, drawGroup, context;
+
+            /*var setEditable = function(value) {
+                var context = Snap($element[0]);
+
+                var texts = context.selectAll('foeringobject');
+
+                for(text in texts) {
+                    text.firstElementChild.setAttribute("contentEditable", value);
+                }
+            };*/
 
             var Pencil = function(colorArg, widthArg) {
 
@@ -28,7 +42,7 @@ application.directive('notebookSheet', function() {
 
                     points.push([x, y]);
 
-                    path = context.paper.path();
+                    path = drawGroup.path();
 
                     path.attr({
                         stroke: color,
@@ -85,8 +99,60 @@ application.directive('notebookSheet', function() {
                 }
             };
 
+            var Text = function() {
+
+                var offset = null;
+                var mouseDownElement = false;
+
+                function elementMousedown(evt) {
+                    mouseDownElement = true;
+                }
+
+                var createText = function(context, localCoordinates) {
+                    var myforeign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
+                    var textdiv = document.createElement("div");
+                    var textnode = document.createTextNode("");
+
+                    textdiv.appendChild(textnode);
+                    textdiv.setAttribute("contentEditable", "true");
+                    textdiv.setAttribute("class", "textEditSVG");
+
+                    myforeign.setAttribute("width", "100%");
+                    myforeign.setAttribute("height", "100%");
+                    myforeign.classList.add("foreign"); //to make div fit text
+
+                    textdiv.classList.add("insideforeign"); //to make div fit text
+                    textdiv.addEventListener("mousedown", elementMousedown, false);
+
+                    myforeign.setAttributeNS(null, "transform", "translate(" + localCoordinates.x + " " + localCoordinates.y + ")");
+                    textGroup.append(myforeign);
+                    myforeign.appendChild(textdiv);
+                };
+
+                this.start = function(event, context) {
+                    offset = $element[0].getBoundingClientRect();
+
+                    var localCoordinates = {};
+
+                    localCoordinates.x = event.pageX - offset.left;
+                    localCoordinates.y = event.pageY - offset.top;
+
+                    if(!mouseDownElement)
+                        createText(context, localCoordinates);
+                    else
+                        mouseDownElement = false;
+                };
+
+                this.move = function(event) {
+                    // TODO: implement?
+                };
+
+                this.finish = function() {
+                    // TODO: implement?
+                };
+            };
+
             var sheet = function(currentObject) {
-                var context = Snap($element[0]);
 
                 $element.bind('mousedown', function(event) {
                     currentObject.start(event, context);
@@ -103,17 +169,32 @@ application.directive('notebookSheet', function() {
 
             // If you add some object
             var elements = {
-                "Draw": new Pencil("#000000", 5),
-                "Erase": new Pencil("#ffffff", 6) //TODO: temporary eraser
+                "Draw": new Pencil($scope.color(), 5),
+                "Erase": new Pencil("#ffffff", 6), //TODO: temporary eraser
+                "Text": new Text()
             };
 
             $scope.$watch('mode()', function() {
+                /*if($scope.mode() == "Text")
+                    setEditable("true");
+                else
+                    setEditable("false");*/
+
+                $element.unbind();
                 sheet( elements[$scope.mode()] );
             });
 
             $scope.$on("$destroy", function() {
                 $element.unbind();
             });
+
+            function init() {
+                context = Snap($element[0]);
+                drawGroup = context.g();
+                textGroup = context.g();
+            }
+
+            init();
         }
     }
 });

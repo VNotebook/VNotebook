@@ -4,6 +4,8 @@ application.controller('NotebookController', function($scope, $location,
   $routeParams, Elements, appConfig) {
 
     $scope.mode = "Draw"; //Default setting
+    $scope.color = "#000000";
+    $scope.svg = "";
 
     var initialLeftPanel = [
       {
@@ -28,7 +30,13 @@ application.controller('NotebookController', function($scope, $location,
         title: "Borrar",
         buttonClass: "glyphicon glyphicon-erase",
         action: "Erase"
-      }
+      },
+        {
+            title: "Texto",
+            buttonClass: "glyphicon glyphicon-font",
+            action: "Text"
+        }
+
     ];
 
     $scope.leftPanel = initialLeftPanel;

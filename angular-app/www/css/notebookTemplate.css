@@ -5879,3 +5879,11 @@ div {
   float: left;
   width: 5%;
   height: 100%; }
+
+.textEditSVG {
+  width: auto;
+  text-align: left;
+  z-index: 1000; }
+
+.textEditSVG:focus {
+  outline: 0px solid transparent; }

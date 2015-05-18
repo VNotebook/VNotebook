@@ -6,12 +6,16 @@
     </div>
 
     <div id="canvas-container" align="center">
-        <svg width="1024" height="800" mode="mode" notebook-sheet> </svg>
+        <svg width="1024" height="800" mode="mode" color="color" model="svg" notebook-sheet> </svg>
     </div>
 
     <div class="btn-group-vertical" ng-model="rightPanel" id="right-button-panel" align="right">
         <button ng-repeat="button in rightPanel" ng-click="defineCurrentObject(button.action)" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
                 <span class="{{button.buttonClass}}" aria-hidden="true"></span>
+        </button>
+        <button colorpicker ng-model="color" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
+            <!-- <span style="width: 100px; height: 100px" ng-style="{'background-color': color}"></span> -->
+            sakdfsakldfjkl
         </button>
     </div>
 </div>
