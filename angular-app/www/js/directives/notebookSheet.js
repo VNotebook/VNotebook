@@ -11,16 +11,6 @@ application.directive('notebookSheet', function() {
 
             var textGroup, drawGroup, context;
 
-            /*var setEditable = function(value) {
-                var context = Snap($element[0]);
-
-                var texts = context.selectAll('foeringobject');
-
-                for(text in texts) {
-                    text.firstElementChild.setAttribute("contentEditable", value);
-                }
-            };*/
-
             var Pencil = function(colorArg, widthArg) {
 
                 var color = colorArg;
@@ -174,14 +164,16 @@ application.directive('notebookSheet', function() {
                 "Text": new Text()
             };
 
-            $scope.$watch('mode()', function() {
-                /*if($scope.mode() == "Text")
-                    setEditable("true");
-                else
-                    setEditable("false");*/
-
+            function updateMode() {
                 $element.unbind();
                 sheet( elements[$scope.mode()] );
+            }
+
+            $scope.$watch('mode()', updateMode);
+
+            $scope.$watch('color()', function() {
+                elements.Draw = new Pencil($scope.color(), 5);
+                updateMode();
             });
 
             $scope.$on("$destroy", function() {

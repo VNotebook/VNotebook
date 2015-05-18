@@ -5873,10 +5873,11 @@ div {
 #canvas-container {
   float: left;
   width: 90%;
-  height: 100%; }
+  height: 100%;
+  border: 1px solid #000000; }
 
 #right-button-panel {
-  float: left;
+  float: right;
   width: 5%;
   height: 100%; }
 

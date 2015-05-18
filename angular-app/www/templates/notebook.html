@@ -13,9 +13,8 @@
         <button ng-repeat="button in rightPanel" ng-click="defineCurrentObject(button.action)" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
                 <span class="{{button.buttonClass}}" aria-hidden="true"></span>
         </button>
-        <button colorpicker ng-model="color" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
-            <!-- <span style="width: 100px; height: 100px" ng-style="{'background-color': color}"></span> -->
-            sakdfsakldfjkl
-        </button>
+        <div colorpicker ng-model="color" type="button" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
+            <div style="width: 30px; height: 30px" ng-style="{'background-color': color}"></div>
+        </div>
     </div>
 </div>
