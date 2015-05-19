@@ -7,6 +7,10 @@ application.controller('NotebookController', function($scope, $location,
     $scope.color = "#000000";
     $scope.svg = "";
 
+    $scope.$watch('svg', function() {
+      // TODO: save the svg
+    });
+
     var initialLeftPanel = [
       {
         title: "Cámara",

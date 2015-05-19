@@ -154,6 +154,9 @@ application.directive('notebookSheet', function() {
 
                 $element.bind('mouseup', function(event) {
                     currentObject.finish();
+                    $scope.$apply(function() {
+                        $scope.model = context.toString();
+                    });
                 });
             };
 
