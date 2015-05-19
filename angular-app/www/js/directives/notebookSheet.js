@@ -101,10 +101,10 @@ application.directive('notebookSheet', function() {
                 var createText = function(context, localCoordinates) {
                     var myforeign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
                     var textdiv = document.createElement("div");
-                    var textnode = document.createTextNode("");
+                    var textnode = document.createTextNode("Text");
 
                     textdiv.appendChild(textnode);
-                    textdiv.setAttribute("contentEditable", "true");
+                    textdiv.setAttribute("contenteditable", "true");
                     textdiv.setAttribute("class", "textEditSVG");
 
                     myforeign.setAttribute("width", "100%");

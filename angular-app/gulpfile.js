@@ -18,7 +18,8 @@ var paths = {
     './www/lib/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js'],
   // Files to copy when distributing
   toDist: ['./www/css/**/*', './www/fonts/**/*', './www/images/**/*',
-    './www/templates/**/*', './www/index.html']
+    './www/templates/**/*', './www/index.html',
+    './www/lib/angular-bootstrap-colorpicker/css/colorpicker.min.css']
 };
 paths.toDist = paths.toDist.concat(paths.vendorJs).concat(paths.js);
 

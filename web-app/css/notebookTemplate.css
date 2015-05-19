@@ -5882,9 +5882,8 @@ div {
   height: 100%; }
 
 .textEditSVG {
-  width: auto;
-  text-align: left;
-  z-index: 1000; }
+  min-width: 15px;
+  text-align: left; }
 
 .textEditSVG:focus {
   outline: 0px solid transparent; }
