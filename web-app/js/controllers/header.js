@@ -11,6 +11,10 @@ application.controller('HeaderController', function($scope, $location, $modal,
     });
   };
 
+  $scope.showCalendar = function() {
+    $location.path('/calendario');
+  };
+
   $scope.login = function() {
     loginRequestHandler.requestLogin();
   };

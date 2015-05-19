@@ -1,6 +1,6 @@
 'use strict';
 
-var application = angular.module('VNoteBookApp', ['ngRoute', 'ui.bootstrap']);
+var application = angular.module('VNoteBookApp', ['ngRoute', 'ui.bootstrap', 'mwl.calendar']);
 
 application.config( function($routeProvider, $httpProvider) {
   $routeProvider
@@ -15,6 +15,10 @@ application.config( function($routeProvider, $httpProvider) {
   .when('/cuaderno/:notebookId', {
     templateUrl: "templates/notebook.html",
     controller: "NotebookController"
+  })
+  .when('/calendario', {
+    templateUrl: "templates/calendar.html",
+    controller: "CalendarController"
   })
   .otherwise({
     redirectTo: '/bibliotecas'

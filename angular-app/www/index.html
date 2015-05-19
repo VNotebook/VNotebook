@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="css/notebookTemplate.min.css">
 		<link rel="stylesheet" href="css/navBar.min.css">
 		<link rel="stylesheet" href="css/libraryButtons.min.css">
+		<link rel="stylesheet" href="css/angular-bootstrap-calendar.min.css">
 	</head>
 	<body ng-app="VNoteBookApp">
 		<div ng-controller="HeaderController">
@@ -29,6 +30,8 @@
 							ng-click="login()" ng-hide="isLoggedIn()">Ingresar</button></span>
 						<button type="button" class="btn btn-default navbar-btn"
 							ng-click="openConfiguration()">Configuración</button>
+						<button type="button" class="btn btn-default navbar-btn"
+							ng-click="showCalendar()">Calendario</button>
 					</div>
 				</div>
 			</nav>
@@ -43,10 +46,13 @@
 		<script src="lib/angular/angular.min.js"></script>
 		<script src="lib/angular-route/angular-route.min.js"></script>
 		<script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+		<script src="lib/moment/moment.js"></script>
+		<script src="lib/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
 		<!-- endinject -->
 
 		<!-- inject:js -->
     <script src="js/app.js"></script>
+    <script src="js/controllers/calendar.js"></script>
     <script src="js/controllers/configurationDialog.js"></script>
     <script src="js/controllers/header.js"></script>
     <script src="js/controllers/libraries.js"></script>
@@ -55,14 +61,14 @@
     <script src="js/controllers/loginDialog.js"></script>
     <script src="js/controllers/notebook.js"></script>
     <script src="js/controllers/notebookEditorDialog.js"></script>
+    <script src="js/directives/errorList.js"></script>
+    <script src="js/directives/notebookSheet.js"></script>
     <script src="js/services/appConfig.js"></script>
     <script src="js/services/authInterceptor.js"></script>
     <script src="js/services/authService.js"></script>
     <script src="js/services/elements.js"></script>
     <script src="js/services/localStorageService.js"></script>
     <script src="js/services/loginRequestHandler.js"></script>
-    <script src="js/directives/errorList.js"></script>
-    <script src="js/directives/notebookSheet.js"></script>
     <!-- endinject -->
 	</body>
 </html>
