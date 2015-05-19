@@ -13,7 +13,9 @@ var paths = {
   allFiles: ['./www/**/*'],
   vendorJs: ['./www/lib/angular/angular.min.js',
     './www/lib/angular-route/angular-route.min.js',
-    './www/lib/angular-bootstrap/ui-bootstrap-tpls.min.js'],
+    './www/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
+    './www/lib/snap.svg/dist/snap.svg-min.js',
+    './www/lib/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js'],
   // Files to copy when distributing
   toDist: ['./www/css/**/*', './www/fonts/**/*', './www/images/**/*',
     './www/templates/**/*', './www/index.html']

@@ -8,13 +8,14 @@
 		<link rel="stylesheet" href="css/notebookTemplate.min.css">
 		<link rel="stylesheet" href="css/navBar.min.css">
 		<link rel="stylesheet" href="css/libraryButtons.min.css">
+		<link rel="stylesheet" href="lib/angular-bootstrap-colorpicker/css/colorpicker.min.css">
 	</head>
 	<body ng-app="VNoteBookApp">
 		<div ng-controller="HeaderController">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="container">
 					<div class="navbar-header">
-							<a class="navbar-brand" href="#/"> <span style="glyphicon glyphicon-th-list"></span> VNoteBook</a>
+							<a class="navbar-brand" href="#/"> VNoteBook</a>
 					</div>
 					<ul class="nav navbar-nav">
 						<li ng-class="{active: isActive('/bibliotecas')}"><a href="#/bibliotecas">Bibliotecas</a></li>
@@ -43,6 +44,8 @@
 		<script src="lib/angular/angular.min.js"></script>
 		<script src="lib/angular-route/angular-route.min.js"></script>
 		<script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+		<script src="lib/snap.svg/dist/snap.svg-min.js"></script>
+		<script src="lib/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js"></script>
 		<!-- endinject -->
 
 		<!-- inject:js -->
@@ -55,14 +58,14 @@
     <script src="js/controllers/loginDialog.js"></script>
     <script src="js/controllers/notebook.js"></script>
     <script src="js/controllers/notebookEditorDialog.js"></script>
+    <script src="js/directives/errorList.js"></script>
+    <script src="js/directives/notebookSheet.js"></script>
     <script src="js/services/appConfig.js"></script>
     <script src="js/services/authInterceptor.js"></script>
     <script src="js/services/authService.js"></script>
     <script src="js/services/elements.js"></script>
     <script src="js/services/localStorageService.js"></script>
     <script src="js/services/loginRequestHandler.js"></script>
-    <script src="js/directives/errorList.js"></script>
-    <script src="js/directives/notebookSheet.js"></script>
     <!-- endinject -->
 	</body>
 </html>
