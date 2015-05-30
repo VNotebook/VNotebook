@@ -16,6 +16,7 @@ class User {
     String lastName
     String salt
 
+    static hasMany = [events: Event]
     static transients =  ['springSecurityService']
 
     static constraints = {
