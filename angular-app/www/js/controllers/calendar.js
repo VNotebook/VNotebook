@@ -1,6 +1,6 @@
 'use strict';
 
-application.controller('CalendarController', function($scope, $modal, Elements) {
+application.controller('CalendarController', function($scope, $modal, Elements, moment) {
 	$scope.calendarView = 'month';
 	$scope.currentDay = new Date();
 	$scope.events = [];

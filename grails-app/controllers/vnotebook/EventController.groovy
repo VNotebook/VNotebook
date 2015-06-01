@@ -7,7 +7,7 @@ import org.hibernate.FetchMode
 @Secured(['ROLE_USER'])
 class EventController extends RestfulControllerBase {
     static responseFormats = ['json']
-    static allowedFields = ['title', 'type', 'startDate', 'endDate']
+    static allowedFields = ['title', 'type', 'startsAt', 'endsAt']
     def springSecurityService
 
     EventController() {
