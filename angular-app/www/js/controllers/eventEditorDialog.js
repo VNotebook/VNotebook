@@ -1,7 +1,9 @@
-application.controller('EventEditorDialogController', function($scope) {
+application.controller('EventEditorDialogController', function($scope, $http, apiUrl) {
 	$scope.newEvent = {
 		title: 'Nuevo Evento',
-		type: 'Info'
+		type: 'Info',
+		startDate: new Date(),
+		endDate: new Date()
 	};
 
 	$scope.toggle = function($event, field, event) {
@@ -11,7 +13,13 @@ application.controller('EventEditorDialogController', function($scope) {
 	};
 
 	$scope.save = function() {
-		//Missing
-		$scope.$close();
+		$scope.errors = null;
+		$scope.newEvent.startDate = $scope.newEvent.startDate.getTime();
+		$scope.newEvent.endDate = $scope.newEvent.endDate.getTime();
+	    $http.post(apiUrl + "/events", $scope.newEvent).then(function() {
+	      $scope.$close();
+	    }, function(response) {
+	      $scope.errors = response.data && response.data['errors'];
+	    });
 	};
 });

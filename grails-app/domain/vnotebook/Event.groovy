@@ -11,5 +11,9 @@ class Event {
 
     static constraints = {
     	title blank: false
+    	type blank: false
+    	startDate blank: false
+    	endDate blank: false
+    	owner blank: false
     }
 }

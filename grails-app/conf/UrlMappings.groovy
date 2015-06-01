@@ -4,6 +4,7 @@ class UrlMappings {
         group "/api", {
             "/widgets"(resources: "widget")
             "/users"(resources: "user")
+            "/events"(resources: "event")
             "/libraries"(resources: "library") {
                 "/notebooks"(resources: "notebook")
             }
