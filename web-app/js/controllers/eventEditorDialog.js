@@ -1,7 +1,7 @@
 application.controller('EventEditorDialogController', function($scope, $http, apiUrl) {
 	$scope.newEvent = {
 		title: 'Nuevo Evento',
-		type: 'Info',
+		type: 'Información',
 		startDate: new Date(),
 		endDate: new Date()
 	};

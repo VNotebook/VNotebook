@@ -26,6 +26,10 @@ application.controller('CalendarController', function($scope, $modal, Elements) 
     }).result.then(load);
   };
 
+  $scope.delete = function() {
+    //missing
+  };
+
   $scope.$on("auth.changed", load);
   load();
 });

@@ -15,6 +15,7 @@ var paths = {
     './www/lib/angular-route/angular-route.min.js',
     './www/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
     './www/lib/moment/moment.js',
+    './www/lib/moment/locale/es.js',
     './www/lib/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js'],
   // Files to copy when distributing
   toDist: ['./www/css/**/*', './www/fonts/**/*', './www/images/**/*',

@@ -8,31 +8,31 @@
 					mwl-date-modifier
 					date="calendarDay"
 					decrement="calendarView">
-					Previous
+					Anterior
 				</button>
 				<button
 					class="btn btn-default"
 					mwl-date-modifier
 					date="calendarDay"
 					set-to-today>
-					Today
+					Hoy
 				</button>
 				<button
 					class="btn btn-primary"
 					mwl-date-modifier
 					date="calendarDay"
 					increment="calendarView">
-					Next
+					Siguiente
 				</button>
 			</div>
 		</div>
 
 		<div class="col-md-6 text-center">
 			<div class="btn-group">
-				<label class="btn btn-primary" ng-model="calendarView" btn-radio="'year'">Year</label>
-	            <label class="btn btn-primary" ng-model="calendarView" btn-radio="'month'">Month</label>
-	            <label class="btn btn-primary" ng-model="calendarView" btn-radio="'week'">Week</label>
-	            <label class="btn btn-primary" ng-model="calendarView" btn-radio="'day'">Day</label>
+				<label class="btn btn-primary" ng-model="calendarView" btn-radio="'year'">Año</label>
+	            <label class="btn btn-primary" ng-model="calendarView" btn-radio="'month'">Mes</label>
+	            <label class="btn btn-primary" ng-model="calendarView" btn-radio="'week'">Semana</label>
+	            <label class="btn btn-primary" ng-model="calendarView" btn-radio="'day'">Dia</label>
 			</div>	
 		</div>
 
@@ -59,8 +59,8 @@
 	<br> <br>
 
 	<h3>
-		Edit events
-		<button class="btn btn-primary pull-right" ng-click="add()">Add new</button>
+		Editar eventos
+		<button class="btn btn-primary pull-right" ng-click="add()">Agregar nuevo</button>
 		<div class="clearfix"></div>
 	</h3>
 
@@ -68,11 +68,11 @@
 
 		<thead>
 			<tr>
-				<th>Title</th>
-				<th>Type</th>
-				<th>Starts at</th>
-				<th>Ends at</th>
-				<th>Remove</th>
+				<th>Titulo</th>
+				<th>Tipo</th>
+				<th>Fecha de inicio</th>
+				<th>Fecha de fin</th>
+				<th>Borrar</th>
 			</tr>
 		</thead>
 
@@ -81,12 +81,10 @@
 				<td><input type="text" class="form-control" ng-model="event.title"></td>
 				<td>
 					<select ng-model="event.type" class="form-control">
-						<option value="important">Important</option>
-						<option value="warning">Warning</option>
-						<option value="info">Info</option>
-						<option value="inverse">Inverse</option>
-						<option value="success">Success</option>
-						<option value="special">Special</option>
+						<option value="important">Importante</option>
+						<option value="info">Información</option>
+						<option value="success">Exito</option>
+						<option value="special">Especial</option>
 					</select>
 				</td>
 				<td>
@@ -107,7 +105,7 @@
 					</p>
 					<timepicker ng-model="event.endDate" hour-step="1" minute-step="15" show-meridian="true"></timepicker>
 				</td>
-				<td><button class="btn btn-danger" ng-click="events.splice($index, 1)">Delete</button></td>
+				<td><button class="btn btn-danger" ng-click="events.splice($index, 1)">Borrar</button></td>
 			</tr>
 		</tbody>
 	</table>

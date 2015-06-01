@@ -8,10 +8,11 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Type</th>
-                        <th>Starts at</th>
-                        <th>Ends at</th>
+                        <th>Titulo</th>
+                        <th>Tipo</th>
+                        <th>Fecha de inicio</th>
+                        <th>Fecha de fin</th>
+                        <th>Borrar</th>
                     </tr>
                 </thead>
 
@@ -19,13 +20,11 @@
                     <tr>
                         <td><input type="text" class="form-control" ng-model="newEvent.title"></td>
                         <td>
-                            <select ng-model="newEvent.type" class="form-control">
-                                <option value="important">Important</option>
-                                <option value="warning">Warning</option>
-                                <option value="info">Info</option>
-                                <option value="inverse">Inverse</option>
-                                <option value="success">Success</option>
-                                <option value="special">Special</option>
+                            <select ng-model="event.type" class="form-control">
+                                <option value="important">Importante</option>
+                                <option value="info">Información</option>
+                                <option value="success">Exito</option>
+                                <option value="special">Especial</option>
                             </select>
                         </td>
                         <td>
