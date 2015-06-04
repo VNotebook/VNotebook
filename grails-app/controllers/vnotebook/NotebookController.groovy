@@ -3,8 +3,7 @@ package vnotebook
 import grails.plugin.springsecurity.annotation.Secured
 
 @Secured(['ROLE_USER'])
-class NotebookController extends RestfulControllerBase {
-    static responseFormats = ['json']
+class NotebookController extends RestfulBaseController {
     static allowedFields = ['name']
     def springSecurityService
 

@@ -5,8 +5,7 @@ import grails.plugin.springsecurity.annotation.Secured
 import org.hibernate.FetchMode
 
 @Secured(['ROLE_USER'])
-class LibraryController extends RestfulControllerBase {
-    static responseFormats = ['json']
+class LibraryController extends RestfulBaseController {
     static allowedFields = ['name']
     def springSecurityService
 
@@ -23,14 +22,10 @@ class LibraryController extends RestfulControllerBase {
     }
 
     @Override
-    protected queryForResource(Serializable targetId) {
-        def result = querySingle(targetId).withPopulatedQuery(null, null) { query ->
-            query.@criteria.setFetchMode('reference', FetchMode.SELECT)
+    protected def querySingle(Serializable targetId) {
+        return super.querySingle(targetId).withPopulatedQuery(null, null) { query ->
+            query.@criteria.setFetchMode('notebooks', FetchMode.SELECT)
             return query.list()
-        }.find()
-
-        return JSON.use("details") {
-            result as JSON
         }
     }
 
