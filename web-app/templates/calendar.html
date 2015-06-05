@@ -105,7 +105,11 @@
 					</p>
 					<timepicker ng-model="event.endsAt" hour-step="1" minute-step="15" show-meridian="true"></timepicker>
 				</td>
-				<td><button class="btn btn-danger" ng-click="events.splice($index, 1)">Borrar</button></td>
+				<td>
+					<button class="btn btn-danger" ng-click="events.splice($index, 1)">Borrar</button>
+					<br> <br>
+					<button class="btn btn-primary" ng-click="update(event)">Guardar</button>
+				</td>
 			</tr>
 		</tbody>
 	</table>

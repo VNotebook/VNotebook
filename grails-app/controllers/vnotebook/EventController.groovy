@@ -23,18 +23,6 @@ class EventController extends RestfulControllerBase {
     }
 
     @Override
-    protected queryForResource(Serializable targetId) {
-        def result = querySingle(targetId).withPopulatedQuery(null, null) { query ->
-            query.@criteria.setFetchMode('reference', FetchMode.SELECT)
-            return query.list()
-        }.find()
-
-        return JSON.use("details") {
-            result as JSON
-        }
-    }
-
-    @Override
     protected def getObjectToBind() {
         def result = request.JSON.subMap(allowedFields)
         result['owner'] = springSecurityService.loadCurrentUser()

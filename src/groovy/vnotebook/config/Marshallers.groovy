@@ -23,6 +23,16 @@ class Marshallers {
             ]
         }
 
+        JSON.registerObjectMarshaller(Event) { Event event ->
+            return [
+                    id: event.id,
+                    title: event.title,
+                    startsAt: event.startsAt,
+                    endsAt: event.endsAt,
+                    type: event.type
+            ]
+        }
+
         JSON.registerObjectMarshaller(Widget) { Widget widget ->
             return [
                     id: widget.id,
