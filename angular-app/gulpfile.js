@@ -98,6 +98,10 @@ gulp.task('watch', function() {
   gulp.watch(paths.js, ['index']);
 });
 
+gulp.task('dist:watch', ['watch'], function() {
+  gulp.watch(paths.toDist, ['dist']);
+});
+
 gulp.task('dist:clean', function(done) {
   var toClean = paths.toDist.map(function(element) {
     var targetPath = element.lastIndexOf('./www/', 0) === 0 ?
