@@ -45,7 +45,9 @@
         view="calendarView"
         view-title="calendarTitle"
 
-		on-event-click="eventClicked(calendarEvent)"
+		on-edit-event-click="edit(calendarEvent)"
+        on-delete-event-click="delete(calendarEvent)"
+
 		edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
 		delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
         
@@ -106,7 +108,7 @@
 					<timepicker ng-model="event.endsAt" hour-step="1" minute-step="15" show-meridian="true"></timepicker>
 				</td>
 				<td>
-					<button class="btn btn-danger" ng-click="events.splice($index, 1)">Borrar</button>
+					<button class="btn btn-danger" ng-click="delete(event)">Borrar</button>
 					<br> <br>
 					<button class="btn btn-primary" ng-click="update(event)">Guardar</button>
 				</td>

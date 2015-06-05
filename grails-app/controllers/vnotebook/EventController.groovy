@@ -5,7 +5,7 @@ import grails.plugin.springsecurity.annotation.Secured
 import org.hibernate.FetchMode
 
 @Secured(['ROLE_USER'])
-class EventController extends RestfulControllerBase {
+class EventController extends RestfulBaseController {
     static responseFormats = ['json']
     static allowedFields = ['title', 'type', 'startsAt', 'endsAt']
     def springSecurityService

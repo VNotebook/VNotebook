@@ -1,6 +1,7 @@
 'use strict';
 
-application.controller('CalendarController', function($scope, $modal, $http, Elements, apiUrl) {
+application.controller('CalendarController', function($scope, $modal, $http, 
+    Elements, apiUrl, editEvent) {
     $scope.calendarView = 'month';
     $scope.currentDay = new Date();
     $scope.events = [];
@@ -26,12 +27,23 @@ application.controller('CalendarController', function($scope, $modal, $http, Ele
         }).result.then(load);
     };
 
-    $scope.delete = function() {
-    //missing
+    $scope.edit = function(event) {
+        editEvent.setEvent(event);
+        $scope.add();
     };
 
-    $scope.update = function(eventToModifity) {
-        $http.put(apiUrl + "/events/" + eventToModifity.id, eventToModifity).then(function() {
+    $scope.delete = function(event) {
+        $http.delete(apiUrl + "/events/" + event.id).then(function() {
+          load();
+        }, function(response) {
+          $scope.errors = response.data && response.data['errors'];
+        });
+    };
+
+    $scope.update = function(event) {
+        event.startsAt = new Date(event.startsAt).getTime();
+        event.endsAt = new Date(event.endsAt).getTime();
+        $http.put(apiUrl + "/events/" + event.id, event).then(function() {
           load();
         }, function(response) {
           $scope.errors = response.data && response.data['errors'];
