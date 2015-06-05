@@ -17,9 +17,9 @@
 
                 <tbody>
                     <tr>
-                        <td><input type="text" class="form-control" ng-model="newEvent.title"></td>
+                        <td><input type="text" class="form-control" ng-model="event.title"></td>
                         <td>
-                            <select ng-model="newEvent.type" class="form-control">
+                            <select ng-model="event.type" class="form-control">
                                 <option value="important">Importante</option>
                                 <option value="info">Información</option>
                                 <option value="success">Exito</option>
@@ -28,21 +28,21 @@
                         </td>
                         <td>
                             <p class="input-group" style="max-width: 250px">
-                                <input type="text" class="form-control" readonly datepicker-popup="medium" ng-model="newEvent.startsAt" is-open="newEvent.startOpen" close-text="Close" />
+                                <input type="text" class="form-control" readonly datepicker-popup="medium" ng-model="event.startsAt" is-open="event.startOpen" close-text="Close" />
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="toggle($event, 'startOpen', newEvent)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    <button type="button" class="btn btn-default" ng-click="toggle($event, 'startOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
                                 </span>
                             </p>
-                            <timepicker ng-model="newEvent.startsAt" hour-step="1" minute-step="15" show-meridian="true"></timepicker>
+                            <timepicker ng-model="event.startsAt" hour-step="1" minute-step="15" show-meridian="true"></timepicker>
                         </td>
                         <td>
                             <p class="input-group" style="max-width: 250px">
-                                <input type="text" class="form-control" readonly datepicker-popup="medium" ng-model="newEvent.endsAt" is-open="newEvent.endOpen" close-text="Close" />
+                                <input type="text" class="form-control" readonly datepicker-popup="medium" ng-model="event.endsAt" is-open="event.endOpen" close-text="Close" />
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="toggle($event, 'endOpen', newEvent)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    <button type="button" class="btn btn-default" ng-click="toggle($event, 'endOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
                                 </span>
                             </p>
-                            <timepicker ng-model="newEvent.endsAt" hour-step="1" minute-step="15" show-meridian="true"></timepicker>
+                            <timepicker ng-model="event.endsAt" hour-step="1" minute-step="15" show-meridian="true"></timepicker>
                         </td>
                     </tr>
                 </tbody>
