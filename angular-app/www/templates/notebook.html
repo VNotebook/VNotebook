@@ -1,17 +1,20 @@
 <div id="notebook" style="background-color: rgb(100, 100, 100); width: 100%; height: 100%;">
     <div class="btn-group-vertical" ng-model="leftPanel" id="left-button-panel" align="left">
-        <button ng-repeat="button in leftPanel" ng-click="button.action()" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
+        <button ng-repeat="button in leftPanel" ng-click="defineCurrentObject(button.action)" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
                 <span class="{{button.buttonClass}}" aria-hidden="true"></span>
         </button>
     </div>
 
     <div id="canvas-container" align="center">
-        <canvas ng-model="notebook" width="1024" height="800" notebook-sheet></canvas>
+        <svg width="1024" height="800" mode="mode" color="color" model="svg" notebook-sheet> </svg>
     </div>
 
     <div class="btn-group-vertical" ng-model="rightPanel" id="right-button-panel" align="right">
-        <button ng-repeat="button in rightPanel" ng-click="button.action()" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
+        <button ng-repeat="button in rightPanel" ng-click="defineCurrentObject(button.action)" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
                 <span class="{{button.buttonClass}}" aria-hidden="true"></span>
         </button>
+        <div colorpicker ng-model="color" type="button" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
+            <div style="width: 35px; height: 35px; border-radius: 20%" ng-style="{'background-color': color}"></div>
+        </div>
     </div>
 </div>

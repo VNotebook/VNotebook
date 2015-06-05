@@ -31,9 +31,7 @@ application.controller('CalendarController', function($scope, $modal, $http, Ele
     };
 
     $scope.update = function(eventToModifity) {
-        $scope.newEvent = eventToModifity;
-        $scope.editing = true;
-        $http.put(apiUrl + "/events/" + $scope.newEvent.id, $scope.newEvent).then(function() {
+        $http.put(apiUrl + "/events/" + eventToModifity.id, eventToModifity).then(function() {
           load();
         }, function(response) {
           $scope.errors = response.data && response.data['errors'];

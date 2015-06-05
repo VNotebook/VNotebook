@@ -20,6 +20,7 @@ module.exports = function(config) {
       'www/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'www/lib/angular-mocks/angular-mocks.js',
       'www/lib/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js',
+      'www/lib/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js',
       'www/js/**/*.js',
       'test/unit/**/*.js'
     ],

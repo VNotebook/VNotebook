@@ -1,6 +1,6 @@
 'use strict';
 
-var application = angular.module('VNoteBookApp', ['ngRoute', 'ui.bootstrap', 'mwl.calendar']);
+var application = angular.module('VNoteBookApp', ['ngRoute', 'ui.bootstrap', 'colorpicker.module', 'mwl.calendar']);
 
 application.config( function($routeProvider, $httpProvider) {
   $routeProvider
