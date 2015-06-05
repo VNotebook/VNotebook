@@ -30,7 +30,14 @@ class User {
     }
 
     Set<Role> getAuthorities() {
-        UserRole.findAllByUser(this).collect { it.role }
+        def result = UserRole.findAllByUser(this).collect { it.role }
+
+        // Dynamically add ROLE_USER to prevent to store it for each user
+        def userRole = Role.findByAuthority("ROLE_USER")
+        assert userRole != null
+        result.add(userRole)
+
+        return result
     }
 
     def beforeInsert() {

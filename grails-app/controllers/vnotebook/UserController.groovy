@@ -4,8 +4,8 @@ import grails.plugin.springsecurity.annotation.Secured
 import grails.rest.RestfulController
 
 @Secured(['ROLE_ADMIN'])
-class UserController extends RestfulController {
-    static responseFormats = ['json']
+class UserController extends RestfulBaseController {
+    static allowedFields = ['username', 'password', 'firstName', 'lastName', 'email']
 
     UserController() {
         super(User, false)
@@ -15,5 +15,10 @@ class UserController extends RestfulController {
     @Secured(['permitAll'])
     def save() {
         return super.save()
+    }
+
+    @Override
+    protected def getObjectToBind() {
+        return request.JSON.subMap(allowedFields)
     }
 }
