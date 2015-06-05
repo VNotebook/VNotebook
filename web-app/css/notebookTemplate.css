@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -4135,7 +4134,7 @@ tbody.collapse.in {
   .breadcrumb > li {
     display: inline-block; }
     .breadcrumb > li + li:before {
-      content: "/ ";
+      content: "/\\00a0";
       padding: 0 5px;
       color: #ccc; }
   .breadcrumb > .active {
@@ -5888,3 +5887,6 @@ div {
 
 .textEditSVG:focus {
   outline: 0px solid transparent; }
+
+.tab-content {
+  padding: 10px 5px; }
