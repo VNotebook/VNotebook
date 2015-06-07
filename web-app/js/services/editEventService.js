@@ -1,4 +1,4 @@
-application.service('editEvent', function() {
+application.service('lel', function() {
     var event = {
 		title: "Nuevo Evento",
 		type: "Información",
