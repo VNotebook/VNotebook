@@ -14,6 +14,9 @@ var paths = {
   vendorJs: ['./www/lib/angular/angular.min.js',
     './www/lib/angular-route/angular-route.min.js',
     './www/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
+    './www/lib/moment/moment.js',
+    './www/lib/moment/locale/es.js',
+    './www/lib/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js',
     './www/lib/snap.svg/dist/snap.svg-min.js',
     './www/lib/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js'],
   // Files to copy when distributing
@@ -31,27 +34,27 @@ gulp.task('livereload', ['sass', 'index', 'serve:live', 'watch']);
 
 gulp.task('index', function (done) {
   gulp.src('./www/index.html')
-    .pipe(inject(gulp.src(paths.vendorJs, {read: false}), {
-      relative: true,
-      name: 'vendor'
-    }))
-    .pipe(inject(gulp.src(paths.js, {read: false}), {relative: true}))
-    .pipe(gulp.dest('./www'))
-    .on('end', done);
+      .pipe(inject(gulp.src(paths.vendorJs, {read: false}), {
+        relative: true,
+        name: 'vendor'
+      }))
+      .pipe(inject(gulp.src(paths.js, {read: false}), {relative: true}))
+      .pipe(gulp.dest('./www'))
+      .on('end', done);
 });
 
 gulp.task('sass', function(done) {
   gulp.src(paths.sass)
-    .pipe(sass({
-      errLogToConsole: true
-    }))
-    .pipe(gulp.dest('./www/css/'))
-    .pipe(minifyCss({
-      keepSpecialComments: 0
-    }))
-    .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('./www/css/'))
-    .on('end', done);
+      .pipe(sass({
+        errLogToConsole: true
+      }))
+      .pipe(gulp.dest('./www/css/'))
+      .pipe(minifyCss({
+        keepSpecialComments: 0
+      }))
+      .pipe(rename({ extname: '.min.css' }))
+      .pipe(gulp.dest('./www/css/'))
+      .on('end', done);
 });
 
 gulp.task('serve:live', function() {
@@ -76,7 +79,7 @@ gulp.task('e2e', function(done) {
   var args = ["test/protractor.config.js", "--baseUrl", e2eUrl];
   var ext = /^win/.test(process.platform) ? '.cmd' : '';
   child_process.spawn('protractor' + ext, args, {
-      stdio: 'inherit'
+    stdio: 'inherit'
   }).on('error', function(e) {
     connect.serverClose();
     throw e;
@@ -95,10 +98,14 @@ gulp.task('watch', function() {
   gulp.watch(paths.js, ['index']);
 });
 
+gulp.task('dist:watch', ['watch'], function() {
+  gulp.watch(paths.toDist, ['dist']);
+});
+
 gulp.task('dist:clean', function(done) {
   var toClean = paths.toDist.map(function(element) {
     var targetPath = element.lastIndexOf('./www/', 0) === 0 ?
-      element.substr(6) : element;
+        element.substr(6) : element;
 
     return distFolder + "/" + targetPath;
   });
@@ -108,5 +115,5 @@ gulp.task('dist:clean', function(done) {
 
 gulp.task('dist', ['sass', 'index'], function() {
   gulp.src(paths.toDist, {base: 'www'})
-    .pipe(gulp.dest(distFolder));
+      .pipe(gulp.dest(distFolder));
 });

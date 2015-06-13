@@ -9,14 +9,15 @@ application.directive('notebookSheet', function() {
         },
         link: function ($scope, $element, $attr) {
 
-            var textGroup, drawGroup, context;
 
-            var Pencil = function(colorArg, widthArg) {
+            var textGroup, drawGroup, sheetGroup, extraContentGroup,context;
+
+            var Pencil = function (colorArg, widthArg, opacityArg) {
 
                 var color = colorArg;
                 var offset = null;
                 var width = widthArg;
-                var opacity = 1.0;
+                var opacity = opacityArg;
 
                 var drawing = false;
                 var points = [];
@@ -44,11 +45,11 @@ application.directive('notebookSheet', function() {
                     });
                 };
 
-                this.finish = function() {
+                this.finish = function () {
                     var _path = null;
 
-                    if(!path != null) {
-                        if(points.length <= 1) {
+                    if (!path != null) {
+                        if (points.length <= 1) {
                             path.remove();
                         } else {
                             _path = path;
@@ -62,13 +63,13 @@ application.directive('notebookSheet', function() {
                     return _path;
                 };
 
-                this.move = function(event) {
-                    if(drawing) {
+                this.move = function (event) {
+                    if (drawing) {
                         var x = event.pageX - offset.left;
                         var y = event.pageY - offset.top;
 
                         points.push([x, y]);
-                        path.attr({ path: pointsToSVG()});
+                        path.attr({path: pointsToSVG()});
                     }
                 };
 
@@ -89,7 +90,7 @@ application.directive('notebookSheet', function() {
                 }
             };
 
-            var Text = function() {
+            var Text = function () {
 
                 var offset = null;
                 var mouseDownElement = false;
@@ -98,7 +99,7 @@ application.directive('notebookSheet', function() {
                     mouseDownElement = true;
                 }
 
-                var createText = function(context, localCoordinates) {
+                var createText = function (context, localCoordinates) {
                     var myforeign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
                     var textdiv = document.createElement("div");
                     var textnode = document.createTextNode("Text");
@@ -119,7 +120,7 @@ application.directive('notebookSheet', function() {
                     myforeign.appendChild(textdiv);
                 };
 
-                this.start = function(event, context) {
+                this.start = function (event, context) {
                     offset = $element[0].getBoundingClientRect();
 
                     var localCoordinates = {};
@@ -127,34 +128,34 @@ application.directive('notebookSheet', function() {
                     localCoordinates.x = event.pageX - offset.left;
                     localCoordinates.y = event.pageY - offset.top;
 
-                    if(!mouseDownElement)
+                    if (!mouseDownElement)
                         createText(context, localCoordinates);
                     else
                         mouseDownElement = false;
                 };
 
-                this.move = function(event) {
+                this.move = function (event) {
                     // TODO: implement?
                 };
 
-                this.finish = function() {
+                this.finish = function () {
                     // TODO: implement?
                 };
             };
 
-            var sheet = function(currentObject) {
+            var sheet = function (currentObject) {
 
-                $element.bind('mousedown', function(event) {
+                $element.bind('mousedown', function (event) {
                     currentObject.start(event, context);
                 });
 
-                $element.bind('mousemove', function(event) {
+                $element.bind('mousemove', function (event) {
                     currentObject.move(event);
                 });
 
-                $element.bind('mouseup', function(event) {
+                $element.bind('mouseup', function (event) {
                     currentObject.finish();
-                    $scope.$apply(function() {
+                    $scope.$apply(function () {
                         $scope.model = context.toString();
                     });
                 });
@@ -162,31 +163,54 @@ application.directive('notebookSheet', function() {
 
             // If you add some object
             var elements = {
-                "Draw": new Pencil($scope.color(), 5),
-                "Erase": new Pencil("#ffffff", 6), //TODO: temporary eraser
+                "Draw": new Pencil($scope.color(), 5, 1.0),
+                "Erase": new Pencil("#ffffff", 6, 1.0), //TODO: temporary eraser
                 "Text": new Text()
             };
 
             function updateMode() {
                 $element.unbind();
-                sheet( elements[$scope.mode()] );
+                sheet(elements[$scope.mode()]);
             }
 
             $scope.$watch('mode()', updateMode);
 
-            $scope.$watch('color()', function() {
+            $scope.$watch('color()', function () {
                 elements.Draw = new Pencil($scope.color(), 5);
                 updateMode();
             });
 
-            $scope.$on("$destroy", function() {
+            $scope.$on("$destroy", function () {
                 $element.unbind();
             });
 
+            function stripedNotebook() {
+                var stepSize = 30;
+
+                for(var i = 0; i <= 25; ++i) {
+                    var currentLine = context.line(35, 30 + i*stepSize, 990, 30 + i*stepSize);
+                    currentLine.attr({
+                        stroke: "black",
+                        "stroke-width": "0.5px"
+                    });
+                    sheetGroup.append(currentLine);
+                }
+            }
+
             function init() {
                 context = Snap($element[0]);
-                drawGroup = context.g();
-                textGroup = context.g();
+                drawGroup = context.group();
+                sheetGroup = context.group();
+                extraContentGroup = context.group();
+                textGroup = context.group();
+                stripedNotebook();
+
+                var vnotebookText = context.text(917, 796, ["V", "Note", "Book"]).attr({
+                    "font-family": "Comic Sans MS",
+                    "style": "-moz-user-select: -moz-none; -khtml-user-select: none; -webkit-user-select: none; " +
+                    "-ms-user-select: none;user-select: none;"
+                });
+                extraContentGroup.append(vnotebookText);
             }
 
             init();
