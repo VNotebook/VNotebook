@@ -196,6 +196,27 @@ application.directive('notebookSheet', function() {
                     sheetGroup.append(currentLine);
                 }
             }
+            function squaredNotebook() {
+                var stepSize = 25;
+
+                var options = {
+                    stroke: "black",
+                    "stroke-width": "0.5px"
+                };
+
+                // putting horizontal lines
+                for(var i = 0; i < 31; ++i) {
+                    var currentLine = context.line(30, 30 + i*stepSize, 980, 30 + i*stepSize);
+                    currentLine.attr(options);
+                    sheetGroup.append(currentLine);
+                }
+
+                for(i = 0; i < 39; ++i) {
+                    currentLine = context.line(30 + i*stepSize, 30, 30 + i*stepSize, 780);
+                    currentLine.attr(options);
+                    sheetGroup.append(currentLine);
+                }
+            }
 
             function init() {
                 context = Snap($element[0]);
@@ -203,9 +224,9 @@ application.directive('notebookSheet', function() {
                 sheetGroup = context.group();
                 extraContentGroup = context.group();
                 textGroup = context.group();
-                stripedNotebook();
+                squaredNotebook();
 
-                var vnotebookText = context.text(917, 796, ["V", "Note", "Book"]).attr({
+                var vnotebookText = context.text(910, 796, "VNoteBook").attr({
                     "font-family": "Comic Sans MS",
                     "style": "-moz-user-select: -moz-none; -khtml-user-select: none; -webkit-user-select: none; " +
                     "-ms-user-select: none;user-select: none;"
