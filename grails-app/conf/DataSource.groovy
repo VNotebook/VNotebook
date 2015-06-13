@@ -3,7 +3,7 @@ dataSource {
     jmxExport = true
     driverClassName = "org.postgresql.Driver"
     username = "postgres"
-    password = "D@kota123"
+    password = "postgres"
     url = "jdbc:postgresql://localhost:5432/vnotebook"
     dialect = org.hibernate.dialect.PostgresPlusDialect
     dbCreate = "validate"

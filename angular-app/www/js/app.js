@@ -1,9 +1,5 @@
 'use strict';
 
-MathJax.Hub.Config({
-  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
-
 var application = angular.module('VNoteBookApp', ['ngRoute', 'ui.bootstrap', 'colorpicker.module']);
 
 application.config( function($routeProvider, $httpProvider) {
