@@ -1,17 +1,19 @@
 'use strict';
 
-application.controller('NotebookController', function($scope, $location,
+application.controller('NotebookController', function($scope, $location, $modal,
   $routeParams, Elements, appConfig) {
 
     $scope.mode = "Draw"; //Default setting
     $scope.svg = "";
     $scope.color = "#000000";
-    $scope.fonttypes = ["Arial", "Comic Sans MS", "Helvetica"];
+    $scope.fonttypes = ["Arial", "Comic Sans MS"];
     $scope.format = {
         'font-family': 'Arial',
         'color': '#000000'
     };
-    document.execCommand('styleWithCSS', true, null);
+    $scope.equation = "";
+
+    document.execCommand('styleWithCSS', true, null); // to put the rich text inside of css
 
     $scope.$watch('svg', function() {
       // TODO: save the svg
@@ -41,12 +43,11 @@ application.controller('NotebookController', function($scope, $location,
         buttonClass: "glyphicon glyphicon-erase",
         action: "Erase"
       },
-        {
-            title: "Texto",
-            buttonClass: "glyphicon glyphicon-font",
-            action: "Text"
-        }
-
+      {
+        title: "Texto",
+        buttonClass: "glyphicon glyphicon-font",
+        action: "Text"
+      }
     ];
 
     $scope.leftPanel = initialLeftPanel;
@@ -76,11 +77,19 @@ application.controller('NotebookController', function($scope, $location,
         $scope.format['font-family'] = type;
     };
 
+    $scope.putEquation = function() {
+      console.log("here");
+      $modal.open({
+        templateUrl: 'templates/equationDialog.html',
+        controller: 'myctrl'
+      });
+    };
+
     $scope.$watch("format['font-family']", function() {
-        document.execCommand("fontName", false, "Comic Sans MS");
+        document.execCommand("fontName", false, $scope.format['font-family']);
     }, true);
 
     $scope.$watch('format.color', function() {
-        document.execCommand("foreColor", false, $scope.format['color'])
+        document.execCommand("foreColor", false, $scope.format['color']);
     }, true);
 });

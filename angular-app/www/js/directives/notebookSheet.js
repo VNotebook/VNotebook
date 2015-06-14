@@ -1,5 +1,9 @@
 'use strict';
 
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+
 application.directive('notebookSheet', function() {
     return {
         scope: {
@@ -7,9 +11,7 @@ application.directive('notebookSheet', function() {
             color: '&',
             model: '='
         },
-        link: function ($scope, $element, $attr) {
-
-
+        link: function ($scope, $element, $attr, $modal) {
             var textGroup, drawGroup, sheetGroup, extraContentGroup, context, stepSize;
 
             var Pencil = function (colorArg, widthArg, className) {
@@ -111,7 +113,7 @@ application.directive('notebookSheet', function() {
                     myforeign.setAttribute("height", "100%");
                     myforeign.classList.add("foreign"); //to make div fit text
 
-                    textdiv.classList.add("insideforeign"); //to make div fit text
+                    textdiv.classList.add("text"); //to make div fit text
                     textdiv.addEventListener("mousedown", elementMousedown, false);
 
                     var yFixedCoordinates = Math.floor(localCoordinates.y / stepSize) * stepSize + 10;
@@ -142,6 +144,13 @@ application.directive('notebookSheet', function() {
                 this.finish = function () {
                     // TODO: implement?
                 };
+            };
+
+            var Equation = function() {
+                $modal.open({
+                    templateUrl: 'templates/equationDialog.html',
+                    controller: 'texController'
+                });
             };
 
             var sheet = function (currentObject) {
@@ -203,7 +212,8 @@ application.directive('notebookSheet', function() {
 
                 var options = {
                     stroke: "black",
-                    "stroke-width": "0.5px"
+                    "stroke-width": "0.5px",
+                    "stroke-opacity": "0.5"
                 };
 
                 // putting horizontal lines
@@ -226,7 +236,7 @@ application.directive('notebookSheet', function() {
                 extraContentGroup = context.group();
                 textGroup = context.group();
                 sheetGroup = context.group();
-                stripedNotebook();
+                squaredNotebook();
 
                 var vnotebookText = context.text(910, 796, "VNoteBook").attr({
                     "style": "-moz-user-select: -moz-none; -khtml-user-select: none; -webkit-user-select: none; " +
