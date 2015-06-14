@@ -10,7 +10,7 @@ application.directive('notebookSheet', function() {
         link: function ($scope, $element, $attr) {
 
 
-            var textGroup, drawGroup, sheetGroup, extraContentGroup,context;
+            var textGroup, drawGroup, sheetGroup, extraContentGroup, context, stepSize;
 
             var Pencil = function (colorArg, widthArg, className) {
 
@@ -114,7 +114,9 @@ application.directive('notebookSheet', function() {
                     textdiv.classList.add("insideforeign"); //to make div fit text
                     textdiv.addEventListener("mousedown", elementMousedown, false);
 
-                    myforeign.setAttributeNS(null, "transform", "translate(" + localCoordinates.x + " " + localCoordinates.y + ")");
+                    var yFixedCoordinates = Math.floor(localCoordinates.y / stepSize) * stepSize + 10;
+                    myforeign.setAttributeNS(null, "transform", "translate(" + localCoordinates.x + " " +
+                                             yFixedCoordinates + ")");
                     textGroup.append(myforeign);
                     myforeign.appendChild(textdiv);
                 };
@@ -169,7 +171,6 @@ application.directive('notebookSheet', function() {
 
             function updateMode() {
                 $element.unbind();
-                console.log($scope.color());
                 sheet(elements[$scope.mode()]);
             }
 
@@ -185,21 +186,20 @@ application.directive('notebookSheet', function() {
             });
 
             function stripedNotebook() {
-                var stepSize = 30;
+                stepSize = 30;
 
                 for(var i = 0; i <= 25; ++i) {
                     var currentLine = context.line(35, 30 + i*stepSize, 990, 30 + i*stepSize);
                     currentLine.attr({
                         stroke: "black",
                         "stroke-width": "0.5px"
-
                     });
                     sheetGroup.append(currentLine);
                 }
             }
 
             function squaredNotebook() {
-                var stepSize = 25;
+                stepSize = 25;
 
                 var options = {
                     stroke: "black",
@@ -226,7 +226,7 @@ application.directive('notebookSheet', function() {
                 extraContentGroup = context.group();
                 textGroup = context.group();
                 sheetGroup = context.group();
-                squaredNotebook();
+                stripedNotebook();
 
                 var vnotebookText = context.text(910, 796, "VNoteBook").attr({
                     "style": "-moz-user-select: -moz-none; -khtml-user-select: none; -webkit-user-select: none; " +

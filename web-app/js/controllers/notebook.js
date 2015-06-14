@@ -8,9 +8,10 @@ application.controller('NotebookController', function($scope, $location,
     $scope.color = "#000000";
     $scope.fonttypes = ["Arial", "Comic Sans MS", "Helvetica"];
     $scope.format = {
-        "font-family": "Arial",
-        "color": "#000000"
+        'font-family': 'Arial',
+        'color': '#000000'
     };
+    document.execCommand('styleWithCSS', true, null);
 
     $scope.$watch('svg', function() {
       // TODO: save the svg
@@ -73,6 +74,13 @@ application.controller('NotebookController', function($scope, $location,
 
     $scope.changeFont = function(type) {
         $scope.format['font-family'] = type;
-        console.log($scope.format);
     };
+
+    $scope.$watch("format['font-family']", function() {
+        document.execCommand("fontName", false, "Comic Sans MS");
+    }, true);
+
+    $scope.$watch('format.color', function() {
+        document.execCommand("foreColor", false, $scope.format['color'])
+    }, true);
 });
