@@ -12,12 +12,11 @@ application.directive('notebookSheet', function() {
 
             var textGroup, drawGroup, sheetGroup, extraContentGroup,context;
 
-            var Pencil = function (colorArg, widthArg, opacityArg) {
+            var Pencil = function (colorArg, widthArg, className) {
 
                 var color = colorArg;
                 var offset = null;
                 var width = widthArg;
-                var opacity = opacityArg;
 
                 var drawing = false;
                 var points = [];
@@ -39,7 +38,7 @@ application.directive('notebookSheet', function() {
                         stroke: color,
                         "fill": "none",
                         "stroke-width": width,
-                        "stroke-opacity": opacity,
+                        "class": className,
                         "stroke-linecap": "round",
                         "stroke-linejoin": "round"
                     });
@@ -163,13 +162,14 @@ application.directive('notebookSheet', function() {
 
             // If you add some object
             var elements = {
-                "Draw": new Pencil($scope.color(), 5, 1.0),
-                "Erase": new Pencil("#ffffff", 6, 1.0), //TODO: temporary eraser
+                "Draw": new Pencil($scope.color(), 5, ""),
+                "Erase": new Pencil("#ffffff", 6, ""), //TODO: temporary eraser
                 "Text": new Text()
             };
 
             function updateMode() {
                 $element.unbind();
+                console.log($scope.color());
                 sheet(elements[$scope.mode()]);
             }
 
@@ -192,10 +192,12 @@ application.directive('notebookSheet', function() {
                     currentLine.attr({
                         stroke: "black",
                         "stroke-width": "0.5px"
+
                     });
                     sheetGroup.append(currentLine);
                 }
             }
+
             function squaredNotebook() {
                 var stepSize = 25;
 
@@ -221,15 +223,14 @@ application.directive('notebookSheet', function() {
             function init() {
                 context = Snap($element[0]);
                 drawGroup = context.group();
-                sheetGroup = context.group();
                 extraContentGroup = context.group();
                 textGroup = context.group();
+                sheetGroup = context.group();
                 squaredNotebook();
 
                 var vnotebookText = context.text(910, 796, "VNoteBook").attr({
-                    "font-family": "Comic Sans MS",
                     "style": "-moz-user-select: -moz-none; -khtml-user-select: none; -webkit-user-select: none; " +
-                    "-ms-user-select: none;user-select: none;"
+                    "-ms-user-select: none;user-select: none; font-family: Comic Sans MS"
                 });
                 extraContentGroup.append(vnotebookText);
             }

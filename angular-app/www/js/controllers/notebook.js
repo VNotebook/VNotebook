@@ -4,8 +4,13 @@ application.controller('NotebookController', function($scope, $location,
   $routeParams, Elements, appConfig) {
 
     $scope.mode = "Draw"; //Default setting
-    $scope.color = "#000000";
     $scope.svg = "";
+    $scope.color = "#000000";
+    $scope.fonttypes = ["Arial", "Comic Sans MS", "Helvetica"];
+    $scope.format = {
+        "font-family": "Arial",
+        "color": "#000000"
+    };
 
     $scope.$watch('svg', function() {
       // TODO: save the svg
@@ -62,4 +67,12 @@ application.controller('NotebookController', function($scope, $location,
         $scope.mode = currentObject;
     };
 
+    $scope.actionOverText = function(action) {
+        document.execCommand(action, false, null);
+    };
+
+    $scope.changeFont = function(type) {
+        $scope.format['font-family'] = type;
+        console.log($scope.format);
+    };
 });
