@@ -79,13 +79,13 @@
 
 		<tbody>
 			<tr ng-repeat="event in events track by $index">
-				<td> {{event.title}} </td>
-				<td> {{event.type}} </td>
+				<td> <pre> {{event.title}} </pre> </td>
+				<td> <pre> {{ event.type }} </pre> </td>
 				<td>
-                    <input type="text" class="form-control" readonly datepicker-popup="medium" ng-model="event.startsAt" close-text="Close" />
+                    <pre> {{event.startsAt | date:'d/MMM/yyyy'}} </pre>
 				</td>
 				<td>
-					<input type="text" class="form-control" readonly datepicker-popup="medium" ng-model="event.endsAt" close-text="Close" />
+					<pre> {{event.endsAt | date:'d/MMM/yyyy'}} </pre>
 				</td>
 				<td>
 					<button type="button" class="btn btn-primary" ng-click="edit(event)"><i class="glyphicon glyphicon-pencil"></i></button>
