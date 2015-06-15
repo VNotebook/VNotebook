@@ -1,7 +1,7 @@
 'use strict';
 
-application.controller('CalendarController', function($scope, $modal, $http, 
-    Elements, apiUrl, editEvent) {
+application.controller('CalendarController', function($scope, $modal, $http,
+    Elements, apiUrl, editEvent, alertService) {
     $scope.calendarView = 'month';
     $scope.currentDay = new Date();
     $scope.events = [];
@@ -10,7 +10,7 @@ application.controller('CalendarController', function($scope, $modal, $http,
         Elements.getEvents().then(function(response) {
             $scope.events = response.data;
         }, function() {
-            alert("Error al obtener los eventos");
+            alertService.error("Error", "Error al obtener los eventos");
         });
     };
 

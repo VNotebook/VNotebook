@@ -1,5 +1,5 @@
 application.controller('LoginDialogController', function($scope, authService,
-  apiUrl, $http, $q) {
+  apiUrl, $http, $q, alertService) {
   $scope.credentials = {
     username: "",
     password: ""
@@ -20,7 +20,7 @@ application.controller('LoginDialogController', function($scope, authService,
       $scope.$close();
     }, function(data) {
       if (data.status === 401) {
-        alert("Credenciales incorrectos");
+        alertService.error("Error", "Credenciales incorrectos");
       }
     });
   };

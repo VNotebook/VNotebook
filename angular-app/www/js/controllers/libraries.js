@@ -1,13 +1,13 @@
 'use strict';
 
 application.controller('LibrariesController', function($scope, $location, $modal,
-  Elements) {
+  Elements, alertService) {
     var load = function () {
         $scope.libraries = [];
         Elements.getLibraries().then(function(response) {
           $scope.libraries = response.data;
         }, function() {
-          alert("Error al obtener las bibliotecas");
+          alertService.error("Error", "Error al obtener las bibliotecas");
         });
     };
 

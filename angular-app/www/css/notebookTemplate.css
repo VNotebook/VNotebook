@@ -5890,3 +5890,7 @@ div {
 
 .tab-content {
   padding: 10px 5px; }
+
+.dialog-error-header {
+  background-color: #d9534f;
+  color: white; }
