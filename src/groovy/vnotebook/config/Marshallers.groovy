@@ -33,6 +33,14 @@ class Marshallers {
             ]
         }
 
+        JSON.registerObjectMarshaller(NotebookShare) { NotebookShare share ->
+            return [
+                    id: share.id,
+                    dateCreated: share.dateCreated,
+                    username: share.sharedWith.username
+            ]
+        }
+
         JSON.registerObjectMarshaller(Widget) { Widget widget ->
             return [
                     id: widget.id,

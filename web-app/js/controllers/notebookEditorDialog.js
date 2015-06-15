@@ -1,13 +1,14 @@
 application.controller('NotebookEditorDialogController',
 function($scope, $http, apiUrl, libraryId) {
   $scope.data = {
-    name: ""
+    name: "",
+    libraryId: libraryId
   };
   $scope.errors = null;
 
   $scope.save = function() {
     $scope.errors = null;
-    $http.post(apiUrl + "/libraries/" + libraryId + "/notebooks", $scope.data)
+    $http.post(apiUrl + "/notebooks", $scope.data)
     .then(function() {
       $scope.$close();
     }, function(response) {
