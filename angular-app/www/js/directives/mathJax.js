@@ -1,9 +1,12 @@
 MathJax.Hub.Config({
-    skipStartupTypeset: true,
-    messageStyle: "none",
-    "HTML-CSS": {
-        showMathMenu: false
-    }
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    "HTML-CSS": { availableFonts: ["TeX"] }
 });
 MathJax.Hub.Configured();
 
@@ -17,17 +20,17 @@ application.directive("mathjaxBind", function() {
                 $element.html("");
                 $element.append($script);
                 MathJax.Hub.Queue(["Reprocess", MathJax.Hub, $element[0]]);
-                $scope.transformEquation = $element;
+                $scope.transformEquation = $element[0].outerHTML;
             });
         }]
     };
 });
 
-application.controller('myctrl', function ($scope) {
+application.controller('equationController', function ($scope) {
 
-    $scope.eq = "";
+    $scope.toMathjax = "";
+
     $scope.save = function () {
-        console.log($scope.transformEquation);
-        $scope.$close();
+        $scope.$close($scope.transformEquation);
     }
 });

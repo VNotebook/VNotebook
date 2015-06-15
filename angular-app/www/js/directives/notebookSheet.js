@@ -9,6 +9,7 @@ application.directive('notebookSheet', function() {
         scope: {
             mode: '&', // function
             color: '&',
+            equation: '&',
             model: '='
         },
         link: function ($scope, $element, $attr, $modal) {
@@ -101,7 +102,7 @@ application.directive('notebookSheet', function() {
                 }
 
                 var createText = function (context, localCoordinates) {
-                    var myforeign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
+                    var myforeign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
                     var textdiv = document.createElement("div");
                     var textnode = document.createTextNode("Text");
 
@@ -146,11 +147,56 @@ application.directive('notebookSheet', function() {
                 };
             };
 
-            var Equation = function() {
-                $modal.open({
-                    templateUrl: 'templates/equationDialog.html',
-                    controller: 'texController'
-                });
+            var Equation = function () {
+                var offset = null;
+                var mouseDownElement = false;
+
+                function elementMousedown(evt) {
+                    mouseDownElement = true;
+                }
+
+                var createEquation = function (context, localCoordinates) {
+                    var myforeign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+                    var spandiv = document.createElement("div");
+                    spandiv.classList.add("no-select");
+
+                    spandiv.innerHTML = context;
+
+                    myforeign.setAttribute("width", "100%");
+                    myforeign.setAttribute("height", "100%");
+                    myforeign.classList.add("foreign"); //to make div fit text
+
+                    spandiv.classList.add("eq");
+                    spandiv.addEventListener("mousedown", elementMousedown, false);
+
+                    var yFixedCoordinates = Math.floor(localCoordinates.y / stepSize) * stepSize + 10;
+                    myforeign.setAttributeNS(null, "transform", "translate(" + localCoordinates.x + " " +
+                        yFixedCoordinates + ")");
+                    textGroup.append(myforeign);
+                    myforeign.appendChild(spandiv);
+                };
+
+                this.start = function (event, context) {
+                    offset = $element[0].getBoundingClientRect();
+
+                    var localCoordinates = {};
+
+                    localCoordinates.x = event.pageX - offset.left;
+                    localCoordinates.y = event.pageY - offset.top;
+
+                    if (!mouseDownElement)
+                        createEquation($scope.equation(), localCoordinates);
+                    else
+                        mouseDownElement = false;
+                };
+
+                this.move = function (event) {
+                    // TODO: implement?
+                };
+
+                this.finish = function () {
+                    // TODO: implement?
+                };
             };
 
             var sheet = function (currentObject) {
@@ -175,7 +221,8 @@ application.directive('notebookSheet', function() {
             var elements = {
                 "Draw": new Pencil($scope.color(), 5, ""),
                 "Erase": new Pencil("#ffffff", 6, ""), //TODO: temporary eraser
-                "Text": new Text()
+                "Text": new Text(),
+                "Equation": new Equation()
             };
 
             function updateMode() {
@@ -193,6 +240,8 @@ application.directive('notebookSheet', function() {
             $scope.$on("$destroy", function () {
                 $element.unbind();
             });
+
+
 
             function stripedNotebook() {
                 stepSize = 30;

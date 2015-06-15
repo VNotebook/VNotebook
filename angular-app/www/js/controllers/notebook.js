@@ -47,7 +47,7 @@ application.controller('NotebookController', function($scope, $location, $modal,
         title: "Texto",
         buttonClass: "glyphicon glyphicon-font",
         action: "Text"
-      }
+      },
     ];
 
     $scope.leftPanel = initialLeftPanel;
@@ -78,10 +78,13 @@ application.controller('NotebookController', function($scope, $location, $modal,
     };
 
     $scope.putEquation = function() {
-      console.log("here");
+      $scope.mode = "Equation";
       $modal.open({
         templateUrl: 'templates/equationDialog.html',
-        controller: 'myctrl'
+        controller: 'equationController'
+      }).result.then(function (result) {
+        console.log(result);
+        $scope.equation = result;
       });
     };
 
