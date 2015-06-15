@@ -109,6 +109,7 @@ application.directive('notebookSheet', function() {
                     textdiv.appendChild(textnode);
                     textdiv.setAttribute("contenteditable", "true");
                     textdiv.setAttribute("class", "textEditSVG");
+                    textdiv.setAttribute("style", "width: " + (980 - localCoordinates.x).toString() + "px;");
 
                     myforeign.setAttribute("width", "100%");
                     myforeign.setAttribute("height", "100%");
@@ -240,8 +241,6 @@ application.directive('notebookSheet', function() {
             $scope.$on("$destroy", function () {
                 $element.unbind();
             });
-
-
 
             function stripedNotebook() {
                 stepSize = 30;

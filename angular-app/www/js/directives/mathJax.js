@@ -27,7 +27,6 @@ application.directive("mathjaxBind", function() {
 });
 
 application.controller('equationController', function ($scope) {
-
     $scope.toMathjax = "";
 
     $scope.save = function () {
