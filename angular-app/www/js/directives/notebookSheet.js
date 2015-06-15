@@ -109,8 +109,8 @@ application.directive('notebookSheet', function() {
                     textdiv.appendChild(textnode);
                     textdiv.setAttribute("contenteditable", "true");
                     textdiv.setAttribute("class", "textEditSVG");
-                    textdiv.setAttribute("style", "width: " + (980 - localCoordinates.x).toString() + "px;");
-
+                    textdiv.setAttribute("style", "width: " + (980 - localCoordinates.x).toString() + "px;" +
+                                         "line-height: " + stepSize.toString() + "px;");
                     myforeign.setAttribute("width", "100%");
                     myforeign.setAttribute("height", "100%");
                     myforeign.classList.add("foreign"); //to make div fit text
@@ -118,7 +118,7 @@ application.directive('notebookSheet', function() {
                     textdiv.classList.add("text"); //to make div fit text
                     textdiv.addEventListener("mousedown", elementMousedown, false);
 
-                    var yFixedCoordinates = Math.floor(localCoordinates.y / stepSize) * stepSize + 10;
+                    var yFixedCoordinates = Math.floor(localCoordinates.y / stepSize) * stepSize + 5;
                     myforeign.setAttributeNS(null, "transform", "translate(" + localCoordinates.x + " " +
                                              yFixedCoordinates + ")");
                     textGroup.append(myforeign);
@@ -284,7 +284,7 @@ application.directive('notebookSheet', function() {
                 extraContentGroup = context.group();
                 textGroup = context.group();
                 sheetGroup = context.group();
-                squaredNotebook();
+                stripedNotebook();
 
                 var vnotebookText = context.text(910, 796, "VNoteBook").attr({
                     "style": "-moz-user-select: -moz-none; -khtml-user-select: none; -webkit-user-select: none; " +
