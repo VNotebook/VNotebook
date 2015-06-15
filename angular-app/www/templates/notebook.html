@@ -1,12 +1,13 @@
 <div id="notebook" style="background-color: rgb(100, 100, 100); width: 100%; height: 100%;">
     <div class="btn-group-vertical" ng-model="leftPanel" id="left-button-panel" align="left">
+        <div class="notebook-separator"></div>
         <button ng-repeat="button in leftPanel" ng-click="defineCurrentObject(button.action)" class="btn btn-default" aria-label="Left Align" style="border: 0px;">
                 <span class="{{button.buttonClass}}" aria-hidden="true"></span>
         </button>
     </div>
 
     <div align="center">
-            <div style="background-color: white;">
+            <div style="background-color: white; width: 1200px">
                 <button colorpicker class="btn btn-default" ng-model="format.color">
                     <span class="glyphicon glyphicon-font" ng-style="{'color': format.color}"></span>
                 </button>
