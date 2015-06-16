@@ -171,7 +171,9 @@ application.directive('notebookSheet', function() {
                     spandiv.addEventListener("mousedown", elementMousedown, false);
 
                     var yFixedCoordinates = Math.floor(localCoordinates.y / stepSize) * stepSize + 10;
-                    myforeign.setAttributeNS(null, "transform", "translate(" + localCoordinates.x + " " +
+                    var xFixedCoordinates = localCoordinates.x < 35 ? 35 : localCoordinates.x;
+                    console.log(xFixedCoordinates);
+                    myforeign.setAttributeNS(null, "transform", "translate(" + xFixedCoordinates + " " +
                         yFixedCoordinates + ")");
                     textGroup.append(myforeign);
                     myforeign.appendChild(spandiv);
