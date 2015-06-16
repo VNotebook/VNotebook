@@ -1,10 +1,27 @@
 'use strict';
 
-application.factory('authService', function($http, $rootScope, tokenUrl) {
+application.factory('authService', function($http, $rootScope, tokenUrl,
+  sessionStorageService) {
   var service;
+
+  function clearAuthInfo() {
+    setUser(null);
+    setToken(null);
+  }
+
+  function setToken(token) {
+    sessionStorageService.setItem('token', token);
+    service.token = token;
+  }
+
+  function setUser(user) {
+    sessionStorageService.setItem('user', user);
+    service.user = user;
+  }
+
   service = {
     login: function(username, password) {
-      this.token = this.user = null;
+      clearAuthInfo();
       return $http.post(tokenUrl, {
         username: username,
         password: password
@@ -14,11 +31,11 @@ application.factory('authService', function($http, $rootScope, tokenUrl) {
         // avoids it to show another login dialog
         skipAuthInterceptor: true
       }).then(function(response) {
-        service.token = response.data["access_token"];
-        service.user = {
+        setToken(response.data["access_token"]);
+        setUser({
           username: username,
           roles: response.data["roles"]
-        };
+        });
 
         $rootScope.$broadcast("auth.changed");
 
@@ -26,7 +43,7 @@ application.factory('authService', function($http, $rootScope, tokenUrl) {
       });
     },
     logout: function() {
-      service.token = service.user = null;
+      clearAuthInfo();
       $rootScope.$broadcast("auth.changed");
     },
     isLoggedIn: function() {
@@ -35,6 +52,9 @@ application.factory('authService', function($http, $rootScope, tokenUrl) {
     token: null,
     user: null
   };
+
+  service.token = sessionStorageService.getItem('token');
+  service.user = sessionStorageService.getItem('user');
 
   return service;
 });

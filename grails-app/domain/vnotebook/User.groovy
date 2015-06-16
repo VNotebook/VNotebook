@@ -16,6 +16,7 @@ class User {
     String lastName
     String salt
 
+    static hasMany = [events: Event]
     static transients =  ['springSecurityService']
 
     static constraints = {
@@ -30,7 +31,14 @@ class User {
     }
 
     Set<Role> getAuthorities() {
-        UserRole.findAllByUser(this).collect { it.role }
+        def result = UserRole.findAllByUser(this).collect { it.role }
+
+        // Dynamically add ROLE_USER to prevent storing it for each user
+        def userRole = Role.findByAuthority("ROLE_USER")
+        assert userRole != null
+        result.add(userRole)
+
+        return result
     }
 
     def beforeInsert() {

@@ -30,7 +30,7 @@ You can:
 * Start a live-reload, development server using `gulp livereload`. This will serve from **www** and will automatically reload the page whenever a file changes, compile SASS and update the JS references in index.html (available at http://localhost:8080).
 * Start a non-live-reload, development server using `gulp serve` (available at http://localhost:8080)
 * Compile SASS (manually) using `gulp sass`
-* Watch for changes in JS and SASS files to automatically compile and update index.html using `gulp watch`
+* Watch for changes in JS and SASS files to automatically compile and update index.html using `gulp watch`. Alternatively, if you are working with Grails you can set up watch to automatically deploy your changes (see next section) when a file changes using `gulp dist:watch`.
 
 You will generally only use `gulp livereload` during development. The other commands are available just in case the livereload server is problematic with your task.
 

@@ -4,15 +4,14 @@ class UrlMappings {
         group "/api", {
             "/widgets"(resources: "widget")
             "/users"(resources: "user")
+            "/events"(resources: "event")
             "/libraries"(resources: "library") {
-                "/notebooks"(resources: "notebook")
+                "/notebooks"(resources: "libraryNotebooks")
             }
-        }
-
-        "/$controller/$action?/$id?(.$format)?" {
-            constraints {
-                // apply constraints here
+            "/notebooks"(resources: "notebook") {
+                "/shares"(resources: "notebookShares")
             }
+            "/sharedNotebooks"(resources: "sharedNotebook")
         }
 
         "/"(uri:"/index.html")

@@ -1,4 +1,27 @@
-<div id="notebook" style="background-color: rgb(100, 100, 100); width: 100%; height: 100%;">
+<div id="notebook" style="width: 100%; height: 100%;">
+  <div class="page-header">
+    <h1>{{notebook.name}}
+      <button type="button" class="btn btn-link btn-xs" ng-click="edit()">
+        <span class="glyphicon glyphicon-pencil"></span> editar
+      </button>
+      <button type="button" class="btn btn-danger btn-xs" ng-click="delete()">
+        <span class="glyphicon glyphicon-trash"></span> eliminar
+      </button>
+    </h1>
+
+    <span ng-if="!shares">
+      Sin compartir
+    </span>
+
+    <span ng-if="shares">
+      Compartido con {{shares.length}} usuario(s)
+    </span>
+
+    <button type="button" class="btn btn-link btn-xs" ng-click="editShares()">
+      <span class="glyphicon glyphicon-user"></span> cambiar
+    </button>
+  </div>
+
     <div class="btn-group-vertical" ng-model="leftPanel" id="left-button-panel" align="left">
         <div class="notebook-separator"></div>
         <button ng-repeat="button in leftPanel" ng-click="defineCurrentObject(button.action)" class="btn btn-default" aria-label="Left Align" style="border: 0px;">

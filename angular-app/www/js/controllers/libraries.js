@@ -1,13 +1,13 @@
 'use strict';
 
 application.controller('LibrariesController', function($scope, $location, $modal,
-  Elements) {
+  Elements, alertService) {
     var load = function () {
         $scope.libraries = [];
         Elements.getLibraries().then(function(response) {
           $scope.libraries = response.data;
         }, function() {
-          alert("Error al obtener las bibliotecas");
+          alertService.error("Error", "Error al obtener las bibliotecas");
         });
     };
 
@@ -18,7 +18,12 @@ application.controller('LibrariesController', function($scope, $location, $modal
     $scope.add = function() {
       $modal.open({
         templateUrl: 'templates/libraryEditorDialog.html',
-        controller: 'LibraryEditorDialogController'
+        controller: 'LibraryEditorDialogController',
+        resolve: {
+          toEdit: function() {
+            return null;
+          }
+        }
       }).result.then(load);
     };
 

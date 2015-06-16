@@ -3,9 +3,8 @@ package vnotebook
 import grails.plugin.springsecurity.annotation.Secured
 
 @Secured(['ROLE_USER'])
-class NotebookController extends RestfulControllerBase {
-    static responseFormats = ['json']
-    static allowedFields = ['name']
+class NotebookController extends RestfulBaseController {
+    static allowedFields = ['name', 'libraryId']
     def springSecurityService
 
     NotebookController() {
@@ -13,10 +12,10 @@ class NotebookController extends RestfulControllerBase {
     }
 
     @Override
-    protected query() {
-        def userId = springSecurityService.loadCurrentUser().id
+    protected def query() {
+        def user = springSecurityService.loadCurrentUser()
         return Notebook.where {
-            owner.id == userId
+            owner == user
         }
     }
 
@@ -26,7 +25,7 @@ class NotebookController extends RestfulControllerBase {
         def user = springSecurityService.loadCurrentUser()
         result['owner'] = user
         result['library'] = Library.where {
-            id == params.libraryId && owner.id == user.id
+            id == result.libraryId && owner == user
         }.find()
         return result
     }

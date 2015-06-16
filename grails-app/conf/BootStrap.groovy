@@ -18,9 +18,9 @@ class BootStrap {
                 firstName: "Admin", lastName: "VNoteBook")
         admin.save()
 
-        new UserRole(user: user, role: roleUser).save()
         new UserRole(user: admin, role: roleAdmin).save()
     }
+
     def destroy = {
     }
 }
