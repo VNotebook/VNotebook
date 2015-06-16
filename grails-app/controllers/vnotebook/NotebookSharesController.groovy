@@ -24,7 +24,7 @@ class NotebookSharesController extends RestfulBaseController {
     protected def getObjectToBind() {
         def source = request.JSON.subMap(allowedFields)
 
-        def result = []
+        def result = [:]
 
         def user = springSecurityService.loadCurrentUser()
         def userId = user.id
@@ -37,7 +37,7 @@ class NotebookSharesController extends RestfulBaseController {
         def targetUsername = source.username
         result['sharedWith'] = User.where {
             username == targetUsername && id != userId
-        }
+        }.find()
 
         return result
     }

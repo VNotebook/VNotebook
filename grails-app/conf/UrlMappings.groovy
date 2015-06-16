@@ -11,6 +11,7 @@ class UrlMappings {
             "/notebooks"(resources: "notebook") {
                 "/shares"(resources: "notebookShares")
             }
+            "/sharedNotebooks"(resources: "sharedNotebook")
         }
 
         "/"(uri:"/index.html")

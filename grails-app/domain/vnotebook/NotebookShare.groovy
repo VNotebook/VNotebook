@@ -6,5 +6,6 @@ class NotebookShare {
     Date dateCreated
 
     static constraints = {
+        sharedWith(unique: 'notebook')
     }
 }

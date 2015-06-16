@@ -8,6 +8,18 @@
         <span class="glyphicon glyphicon-trash"></span> eliminar
       </button>
     </h1>
+
+    <span ng-if="!shares">
+      Sin compartir
+    </span>
+
+    <span ng-if="shares">
+      Compartido con {{shares.length}} usuario(s)
+    </span>
+
+    <button type="button" class="btn btn-link btn-xs" ng-click="editShares()">
+      <span class="glyphicon glyphicon-user"></span> cambiar
+    </button>
   </div>
 
     <div class="btn-group-vertical" ng-model="leftPanel" id="left-button-panel" align="left">

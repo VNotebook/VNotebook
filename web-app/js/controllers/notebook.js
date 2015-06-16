@@ -12,6 +12,15 @@ application.controller('NotebookController', function($scope, $location,
       });
     };
 
+    var reloadShares = function() {
+      $scope.shares = null;
+
+      $http.get(apiUrl + "/notebooks/" + notebookId + "/shares")
+      .then(function(response) {
+        $scope.shares = response.data;
+      });
+    };
+
     $scope.edit = function() {
       $modal.open({
         templateUrl: 'templates/notebookEditorDialog.html',
@@ -39,7 +48,18 @@ application.controller('NotebookController', function($scope, $location,
       });
     };
 
+    $scope.editShares = function() {
+      $modal.open({
+        templateUrl: 'templates/sharesEditorDialog.html',
+        controller: 'SharesEditorDialogController',
+        resolve: {
+          notebookId: function() { return $scope.notebook.id; }
+        }
+      }).result.then(reloadShares);
+    };
+
     load();
+    reloadShares();
 
     $scope.mode = "Draw"; //Default setting
     $scope.color = "#000000";
