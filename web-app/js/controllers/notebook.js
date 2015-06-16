@@ -1,7 +1,7 @@
 'use strict';
 
-application.controller('NotebookController', function($scope, $location,
-                                                        $routeParams, Elements, appConfig, $modal, alertService, $http, apiUrl) {
+application.controller('NotebookController', function($scope, $location, $routeParams, Elements, appConfig, $modal,
+                                                      alertService, $http, apiUrl) {
     var notebookId = $routeParams.notebookId;
 
     var load = function () {

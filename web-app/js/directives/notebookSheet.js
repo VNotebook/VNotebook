@@ -285,7 +285,7 @@ application.directive('notebookSheet', function() {
                 extraContentGroup = context.group();
                 textGroup = context.group();
                 sheetGroup = context.group();
-                stripedNotebook();
+                squaredNotebook();
 
                 var vnotebookText = context.text(910, 796, "VNoteBook").attr({
                     "style": "-moz-user-select: -moz-none; -khtml-user-select: none; -webkit-user-select: none; " +
