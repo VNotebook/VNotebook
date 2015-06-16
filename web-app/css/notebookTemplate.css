@@ -5914,3 +5914,10 @@ div {
   width: 58px;
   height: 49px;
   background-color: white; }
+
+.tab-content {
+  padding: 10px 5px; }
+
+.dialog-error-header {
+  background-color: #d9534f;
+  color: white; }
