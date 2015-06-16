@@ -1,5 +1,13 @@
 <div>
-    <h1 class="page-header">{{library.name}} <small>(biblioteca)</small></h1>
+    <h1 class="page-header">{{library.name}} <small>(biblioteca)</small>
+      <button type="button" class="btn btn-link btn-xs" ng-click="edit()">
+        <span class="glyphicon glyphicon-pencil"></span> editar
+      </button>
+      <button type="button" class="btn btn-danger btn-xs" ng-click="delete()">
+        <span class="glyphicon glyphicon-trash"></span> eliminar
+      </button>
+    </h1>
+
     <div class="btn-horizontal btn-lg">
         <button ng-repeat="notebook in library.notebooks"
           ng-click="openNotebook(notebook)" class="btn btn-default"

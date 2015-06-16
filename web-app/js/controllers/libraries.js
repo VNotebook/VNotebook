@@ -18,7 +18,12 @@ application.controller('LibrariesController', function($scope, $location, $modal
     $scope.add = function() {
       $modal.open({
         templateUrl: 'templates/libraryEditorDialog.html',
-        controller: 'LibraryEditorDialogController'
+        controller: 'LibraryEditorDialogController',
+        resolve: {
+          toEdit: function() {
+            return null;
+          }
+        }
       }).result.then(load);
     };
 

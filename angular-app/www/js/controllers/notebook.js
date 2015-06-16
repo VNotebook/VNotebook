@@ -1,7 +1,45 @@
 'use strict';
 
 application.controller('NotebookController', function($scope, $location,
-  $routeParams, Elements, appConfig) {
+  $routeParams, Elements, appConfig, $modal, alertService, $http, apiUrl) {
+    var notebookId = $routeParams.notebookId;
+
+    var load = function () {
+      $scope.notebook = null;
+
+      Elements.getNotebookById(notebookId).then(function(response) {
+        $scope.notebook = response.data;
+      });
+    };
+
+    $scope.edit = function() {
+      $modal.open({
+        templateUrl: 'templates/notebookEditorDialog.html',
+        controller: 'NotebookEditorDialogController',
+        resolve: {
+          toEdit: function() {
+            return $scope.notebook;
+          },
+          libraryId: function() { return $scope.notebook.libraryId; }
+        }
+      }).result.then(load);
+    };
+
+    $scope.delete = function() {
+      var notebook = $scope.notebook;
+      alertService.deleteConfirm(
+        "Está a punto de eliminar el cuaderno \"" +
+        notebook.name + "\". Perderá todo el contenido, incluyendo páginas.\n\n" +
+        "Para confirmar que esto no es un error, escriba el nombre del cuaderno a continuación:",
+        notebook.name)
+      .then(function() {
+        return $http.delete(apiUrl + "/notebooks/" + notebook.id);
+      }).then(function() {
+        $location.path("/");
+      });
+    };
+
+    load();
 
     $scope.mode = "Draw"; //Default setting
     $scope.color = "#000000";
@@ -13,7 +51,7 @@ application.controller('NotebookController', function($scope, $location,
 
     var initialLeftPanel = [
       {
-        title: "C�mara",
+        title: "Cámara",
         buttonClass: "glyphicon glyphicon-camera",
         action: "Nothing"
       },

@@ -13,6 +13,18 @@ application.factory('alertService', function($modal, $rootScope) {
         size: 'sm',
         scope: scope
       }).result;
+    },
+    deleteConfirm: function(message, name) {
+      var scope = $rootScope.$new();
+
+      scope.message = message;
+      scope.name = name;
+
+      return $modal.open({
+        templateUrl: 'templates/deleteConfirm.html',
+        size: 'sm',
+        scope: scope
+      }).result;
     }
   };
 });
