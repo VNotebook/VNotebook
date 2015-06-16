@@ -1,4 +1,4 @@
-MathJax.Hub.Config({
+/*MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
     jax: ["input/TeX", "output/HTML-CSS"],
     tex2jax: {
@@ -8,7 +8,16 @@ MathJax.Hub.Config({
     },
     "HTML-CSS": { availableFonts: ["TeX"] }
 });
-MathJax.Hub.Configured();
+MathJax.Hub.Configured();*/
+
+/*MathJax.Hub.Config({
+    skipStartupTypeset: true,
+    messageStyle: "none",
+    "HTML-CSS": {
+        showMathMenu: false
+    }
+});
+MathJax.Hub.Configured();/*/
 
 application.directive("mathjaxBind", function() {
     return {

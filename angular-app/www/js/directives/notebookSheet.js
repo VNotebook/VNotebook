@@ -1,8 +1,8 @@
 'use strict';
 
-MathJax.Hub.Config({
+/*MathJax.Hub.Config({
     tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
+np});*/
 
 application.directive('notebookSheet', function() {
     return {
@@ -31,7 +31,7 @@ application.directive('notebookSheet', function() {
                     offset = $element[0].getBoundingClientRect();
 
                     var x = event.pageX - offset.left;
-                    var y = event.pageY - offset.top;
+                    var y = event.pageY - (document.documentElement.scrollTop || document.body.scrollTop) - offset.top;
 
                     points.push([x, y]);
 
@@ -68,7 +68,7 @@ application.directive('notebookSheet', function() {
                 this.move = function (event) {
                     if (drawing) {
                         var x = event.pageX - offset.left;
-                        var y = event.pageY - offset.top;
+                        var y = event.pageY - (document.documentElement.scrollTop || document.body.scrollTop) - offset.top;
 
                         points.push([x, y]);
                         path.attr({path: pointsToSVG()});
@@ -131,7 +131,7 @@ application.directive('notebookSheet', function() {
                     var localCoordinates = {};
 
                     localCoordinates.x = event.pageX - offset.left;
-                    localCoordinates.y = event.pageY - offset.top;
+                    localCoordinates.y = event.pageY - (document.documentElement.scrollTop || document.body.scrollTop) - offset.top;
 
                     if (!mouseDownElement)
                         createText(context, localCoordinates);
@@ -172,7 +172,6 @@ application.directive('notebookSheet', function() {
 
                     var yFixedCoordinates = Math.floor(localCoordinates.y / stepSize) * stepSize + 10;
                     var xFixedCoordinates = localCoordinates.x < 35 ? 35 : localCoordinates.x;
-                    console.log(xFixedCoordinates);
                     myforeign.setAttributeNS(null, "transform", "translate(" + xFixedCoordinates + " " +
                         yFixedCoordinates + ")");
                     textGroup.append(myforeign);
@@ -185,7 +184,7 @@ application.directive('notebookSheet', function() {
                     var localCoordinates = {};
 
                     localCoordinates.x = event.pageX - offset.left;
-                    localCoordinates.y = event.pageY - offset.top;
+                    localCoordinates.y = event.pageY - (document.documentElement.scrollTop || document.body.scrollTop) - offset.top;
 
                     if (!mouseDownElement)
                         createEquation($scope.equation(), localCoordinates);
