@@ -10,14 +10,14 @@
 });
 MathJax.Hub.Configured();*/
 
-/*MathJax.Hub.Config({
+MathJax.Hub.Config({
     skipStartupTypeset: true,
     messageStyle: "none",
     "HTML-CSS": {
         showMathMenu: false
     }
 });
-MathJax.Hub.Configured();/*/
+MathJax.Hub.Configured();
 
 application.directive("mathjaxBind", function() {
     return {

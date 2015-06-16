@@ -1,7 +1,65 @@
 'use strict';
 
-application.controller('NotebookController', function($scope, $location, $modal,
-  $routeParams, Elements, appConfig) {
+application.controller('NotebookController', function($scope, $location,
+                                                        $routeParams, Elements, appConfig, $modal, alertService, $http, apiUrl) {
+    var notebookId = $routeParams.notebookId;
+
+    var load = function () {
+      $scope.notebook = null;
+
+      Elements.getNotebookById(notebookId).then(function(response) {
+        $scope.notebook = response.data;
+      });
+    };
+
+    var reloadShares = function() {
+      $scope.shares = null;
+
+      $http.get(apiUrl + "/notebooks/" + notebookId + "/shares")
+          .then(function(response) {
+            $scope.shares = response.data;
+          });
+    };
+
+    $scope.edit = function() {
+      $modal.open({
+        templateUrl: 'templates/notebookEditorDialog.html',
+        controller: 'NotebookEditorDialogController',
+        resolve: {
+          toEdit: function() {
+            return $scope.notebook;
+          },
+          libraryId: function() { return $scope.notebook.libraryId; }
+        }
+      }).result.then(load);
+    };
+
+    $scope.delete = function() {
+      var notebook = $scope.notebook;
+      alertService.deleteConfirm(
+          "Está a punto de eliminar el cuaderno \"" +
+          notebook.name + "\". Perderá todo el contenido, incluyendo páginas.\n\n" +
+          "Para confirmar que esto no es un error, escriba el nombre del cuaderno a continuación:",
+          notebook.name)
+          .then(function() {
+            return $http.delete(apiUrl + "/notebooks/" + notebook.id);
+          }).then(function() {
+            $location.path("/");
+          });
+    };
+
+    $scope.editShares = function() {
+      $modal.open({
+        templateUrl: 'templates/sharesEditorDialog.html',
+        controller: 'SharesEditorDialogController',
+        resolve: {
+          notebookId: function() { return $scope.notebook.id; }
+        }
+      }).result.then(reloadShares);
+    };
+
+    load();
+    reloadShares();
 
     $scope.mode = "Draw"; //Default setting
     $scope.svg = "";
@@ -47,7 +105,7 @@ application.controller('NotebookController', function($scope, $location, $modal,
         title: "Texto",
         buttonClass: "glyphicon glyphicon-font",
         action: "Text"
-      },
+      }
     ];
 
     $scope.leftPanel = initialLeftPanel;
@@ -83,7 +141,6 @@ application.controller('NotebookController', function($scope, $location, $modal,
         templateUrl: 'templates/equationDialog.html',
         controller: 'equationController'
       }).result.then(function (result) {
-        console.log(result);
         $scope.equation = result;
       });
     };
