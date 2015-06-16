@@ -60,5 +60,17 @@ class Marshallers {
                 ]
             }
         }
+
+        JSON.createNamedConfig('sharedNotebook') {
+            it.registerObjectMarshaller(Notebook) { Notebook notebook, JSON json ->
+                return [
+                        id: notebook.id,
+                        name: notebook.name,
+                        libraryId: notebook.library.id,
+                        libraryName: notebook.library.name,
+                        ownerUsername: notebook.owner.username
+                ]
+            }
+        }
     }
 }

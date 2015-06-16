@@ -1,0 +1,14 @@
+<div>
+    <h1 class="page-header">Compartidos conmigo</h1>
+
+    <div class="btn-horizontal btn-lg">
+        <button ng-repeat="notebook in notebooks"
+          ng-click="openNotebook(notebook)" class="btn btn-default"
+          aria-label="Left Align" style="border: 0px solid;">
+            <p>
+                <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+            </p>
+            {{notebook.name}} (por <i>{{notebook.ownerUsername}}</i>, en <strong>{{notebook.libraryName}}</strong>)
+        </button>
+    </div>
+</div>
