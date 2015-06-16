@@ -223,7 +223,7 @@ application.directive('notebookSheet', function() {
             // If you add some object
             var elements = {
                 "Draw": new Pencil($scope.color(), 5, ""),
-                "Erase": new Pencil("#ffffff", 6, ""), //TODO: temporary eraser
+                "Erase": new Pencil("#ffffff", 6, ""),
                 "Text": new Text(),
                 "Equation": new Equation()
             };
