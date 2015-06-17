@@ -67,50 +67,29 @@
 	</h3>
 
 	<table class="table table-bordered">
-
 		<thead>
 			<tr>
 				<th>Titulo</th>
 				<th>Tipo</th>
 				<th>Fecha de inicio</th>
 				<th>Fecha de fin</th>
-				<th>Borrar</th>
+				<th>Acción</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<tr ng-repeat="event in events track by $index">
-				<td><input type="text" class="form-control" ng-model="event.title"></td>
+				<td> <pre> {{event.title}} </pre> </td>
+				<td> <pre> {{ event.type }} </pre> </td>
 				<td>
-					<select ng-model="event.type" class="form-control">
-						<option value="important">Importante</option>
-						<option value="info">Información</option>
-						<option value="success">Exito</option>
-						<option value="special">Especial</option>
-					</select>
+                    <pre> {{event.startsAt | date:'d/MMM/yyyy'}} </pre>
 				</td>
 				<td>
-					<p class="input-group" style="max-width: 250px">
-						<input type="text" class="form-control" readonly datepicker-popup="medium" ng-model="event.startsAt" is-open="event.startOpen" close-text="Close" />
-						<span class="input-group-btn">
-							<button type="button" class="btn btn-default" ng-click="toggle($event, 'startOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
-						</span>
-					</p>
-					<timepicker ng-model="event.startsAt" hour-step="1" minute-step="15" show-meridian="true"></timepicker>
+					<pre> {{event.endsAt | date:'d/MMM/yyyy'}} </pre>
 				</td>
 				<td>
-					<p class="input-group" style="max-width: 250px">
-						<input type="text" class="form-control" readonly datepicker-popup="medium" ng-model="event.endsAt" is-open="event.endOpen" close-text="Close" />
-						<span class="input-group-btn">
-							<button type="button" class="btn btn-default" ng-click="toggle($event, 'endOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
-						</span>
-					</p>
-					<timepicker ng-model="event.endsAt" hour-step="1" minute-step="15" show-meridian="true"></timepicker>
-				</td>
-				<td>
-					<button class="btn btn-danger" ng-click="delete(event)">Borrar</button>
-					<br> <br>
-					<button class="btn btn-primary" ng-click="update(event)">Guardar</button>
+					<button type="button" class="btn btn-primary" ng-click="edit(event)"><i class="glyphicon glyphicon-pencil"></i></button>
+					<button type="button" class="btn btn-danger" ng-click="delete(event)"><i class="glyphicon glyphicon-remove"></i></button>
 				</td>
 			</tr>
 		</tbody>

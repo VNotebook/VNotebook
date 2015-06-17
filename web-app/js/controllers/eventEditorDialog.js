@@ -1,4 +1,6 @@
-application.controller('EventEditorDialogController', function($scope, $http, apiUrl, editEvent) {
+application.controller('EventEditorDialogController', function($scope, $http, apiUrl, eventToEdit) {
+	$scope.event = eventToEdit;
+
 	var update = function() {
 		$scope.errors = null;
 	    $http.put(apiUrl + "/events/" + $scope.event.id, $scope.event).then(function() {
@@ -17,10 +19,6 @@ application.controller('EventEditorDialogController', function($scope, $http, ap
 	    });
 	};
 
-	$scope.initEvent = function() {
-		$scope.event = editEvent.getEvent();
-	};
-
 	$scope.toggle = function($event, field, event) {
 		$event.preventDefault();
 		$event.stopPropagation();
@@ -30,7 +28,7 @@ application.controller('EventEditorDialogController', function($scope, $http, ap
 	$scope.save = function() {
 		$scope.event.startsAt = new Date($scope.event.startsAt).getTime();
         $scope.event.endsAt = new Date($scope.event.endsAt).getTime();
-		if ( editEvent.isEditing() == false ) {
+		if ( $scope.event.newEvent == false ) {
 			add();
 		} else {
 			update();
