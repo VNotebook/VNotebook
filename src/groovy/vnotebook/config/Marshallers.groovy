@@ -33,6 +33,14 @@ class Marshallers {
             ]
         }
 
+        JSON.registerObjectMarshaller(NotebookShare) { NotebookShare share ->
+            return [
+                    id: share.id,
+                    dateCreated: share.dateCreated,
+                    username: share.sharedWith.username
+            ]
+        }
+
         JSON.registerObjectMarshaller(Widget) { Widget widget ->
             return [
                     id: widget.id,
@@ -49,6 +57,18 @@ class Marshallers {
                         name: library.name,
                         dateCreated: library.dateCreated,
                         notebooks: library.notebooks
+                ]
+            }
+        }
+
+        JSON.createNamedConfig('sharedNotebook') {
+            it.registerObjectMarshaller(Notebook) { Notebook notebook, JSON json ->
+                return [
+                        id: notebook.id,
+                        name: notebook.name,
+                        libraryId: notebook.library.id,
+                        libraryName: notebook.library.name,
+                        ownerUsername: notebook.owner.username
                 ]
             }
         }

@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h3 class="modal-title">Compartir un cuaderno</h3>
+</div>
+<div class="modal-body">
+  <table class="table table-hover table-condensed">
+    <tbody>
+      <tr ng-repeat="share in shares">
+        <td>{{share.username}}</td>
+        <td class="text-right"><button type="button" class="btn btn-danger btn-xs"
+          ng-click="delete(share)">
+        <span class="glyphicon glyphicon-remove"></span></button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <error-list errors="errors"></error-list>
+  <form ng-submit="add()" class="form-inline">
+    <div class="form-group">
+      <label for="username" class="sr-only">Nombre de usuario</label>
+      <input type="text" class="form-control" id="username"
+         ng-model="data.username" placeholder="Nombre de usuario">
+    </div>
+    <button type="submit" class="btn btn-primary">Añadir</button>
+  </form>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="$close()">Cerrar</button>
+  </div>
+</div>

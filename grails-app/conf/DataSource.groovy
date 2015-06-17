@@ -3,7 +3,7 @@ dataSource {
     jmxExport = true
     driverClassName = "org.postgresql.Driver"
     username = "postgres"
-    password = "D@kota123"
+    password = "postgres"
     url = "jdbc:postgresql://localhost:5432/vnotebook"
     dialect = org.hibernate.dialect.PostgresPlusDialect
     dbCreate = "validate"
@@ -21,7 +21,12 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            dbCreate = "update"
+            url = "jdbc:h2:mem:testDb"
+            driverClassName = "org.h2.Driver"
+            username = ""
+            password = ""
+            dialect = org.hibernate.dialect.H2Dialect
         }
     }
     test {

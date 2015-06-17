@@ -4,7 +4,7 @@ import grails.plugin.springsecurity.annotation.Secured
 
 @Secured(['ROLE_USER'])
 class NotebookController extends RestfulBaseController {
-    static allowedFields = ['name']
+    static allowedFields = ['name', 'libraryId']
     def springSecurityService
 
     NotebookController() {
@@ -12,10 +12,10 @@ class NotebookController extends RestfulBaseController {
     }
 
     @Override
-    protected query() {
-        def userId = springSecurityService.loadCurrentUser().id
+    protected def query() {
+        def user = springSecurityService.loadCurrentUser()
         return Notebook.where {
-            owner.id == userId
+            owner == user
         }
     }
 
@@ -25,7 +25,7 @@ class NotebookController extends RestfulBaseController {
         def user = springSecurityService.loadCurrentUser()
         result['owner'] = user
         result['library'] = Library.where {
-            id == params.libraryId && owner.id == user.id
+            id == result.libraryId && owner == user
         }.find()
         return result
     }

@@ -6,8 +6,12 @@ class UrlMappings {
             "/users"(resources: "user")
             "/events"(resources: "event")
             "/libraries"(resources: "library") {
-                "/notebooks"(resources: "notebook")
+                "/notebooks"(resources: "libraryNotebooks")
             }
+            "/notebooks"(resources: "notebook") {
+                "/shares"(resources: "notebookShares")
+            }
+            "/sharedNotebooks"(resources: "sharedNotebook")
         }
 
         "/"(uri:"/index.html")

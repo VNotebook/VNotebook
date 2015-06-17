@@ -7,6 +7,8 @@ import grails.transaction.Transactional
 
 abstract class RestfulBaseController extends RestfulController {
     static responseFormats = ['json']
+    protected def jsonConfig = null
+    protected def jsonDetailsConfig = "details"
 
     RestfulBaseController(Class resource) {
         super(resource)
@@ -17,41 +19,43 @@ abstract class RestfulBaseController extends RestfulController {
     }
 
     @Override
-    Object index(Integer max) {
-        return super.index(max)
+    def index(Integer max) {
+        useJsonConfig(jsonConfig, {
+            return super.index(max)
+        })
     }
 
     @Override
     def show() {
-        JSON.use("details", {
+        useJsonConfig(jsonDetailsConfig, {
             super.show()
         })
     }
 
     @Override
     def patch() {
-        JSON.use("details", {
+        useJsonConfig(jsonDetailsConfig, {
             super.patch()
         })
     }
 
     @Override
     def update() {
-        JSON.use("details", {
+        JSON.use(jsonDetailsConfig, {
             super.update()
         })
     }
 
     @Override
     def delete() {
-        JSON.use("details", {
+        useJsonConfig(jsonDetailsConfig, {
             super.delete()
         })
     }
 
     @Override
     def save() {
-        JSON.use("details", {
+        useJsonConfig(jsonDetailsConfig, {
             super.save()
         })
     }
@@ -78,5 +82,13 @@ abstract class RestfulBaseController extends RestfulController {
     @Override
     protected Integer countResources() {
         return query().count()
+    }
+
+    private def useJsonConfig(config, closure) {
+        if (config != null) {
+            return JSON.use(config, closure)
+        }
+
+        return closure()
     }
 }

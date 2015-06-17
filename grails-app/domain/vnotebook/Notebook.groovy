@@ -6,7 +6,7 @@ class Notebook {
     Collection pages
     Library library
 
-    static hasMany = [pages: Page]
+    static hasMany = [pages: Page, shares: NotebookShare]
 
     static constraints = {
     }

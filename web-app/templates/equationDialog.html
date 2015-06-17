@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h3 class="modal-title">Insertar Nueva Ecuación</h3>
+</div>
+<div class="modal-body">
+    <form ng-submit="save()">
+        <h4>Escribe la nueva ecuación</h4>
+        <div class="form-group">
+            <input ng-model="toMathjax" type="text" class="form-control" placeholder="Inserta la ecuacion aqui...">
+        </div>
+        <div mathjax-bind="toMathjax" style="max-width: 300px; height: auto; margin: 10px auto;" class="text-center"></div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="$dismiss()">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Insertar</button>
+        </div>
+    </form>
+</div>
