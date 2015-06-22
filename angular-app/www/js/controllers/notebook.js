@@ -62,7 +62,8 @@ application.controller('NotebookController', function($scope, $location, $routeP
     reloadShares();
 
     $scope.mode = "Draw"; //Default setting
-    $scope.svg = "";
+    $scope.toSave = "";
+    $scope.toLoad = "";
     $scope.color = "#000000";
     $scope.fonttypes = ["Arial", "Comic Sans MS"];
     $scope.format = {
@@ -73,8 +74,8 @@ application.controller('NotebookController', function($scope, $location, $routeP
 
     document.execCommand('styleWithCSS', true, null); // to put the rich text inside of css
 
-    $scope.$watch('svg', function() {
-      // TODO: save the svg
+    $scope.$watch('toSave', function() {
+      console.log($scope.toSave);
     });
 
     var initialLeftPanel = [
@@ -143,6 +144,11 @@ application.controller('NotebookController', function($scope, $location, $routeP
       }).result.then(function (result) {
         $scope.equation = result;
       });
+    };
+
+    // load the content of SVG
+    var loadSVG = function (content) {
+        $scope.toLoad = content;
     };
 
     $scope.$watch("format['font-family']", function() {

@@ -10,7 +10,8 @@ application.directive('notebookSheet', function() {
             mode: '&', // function
             color: '&',
             equation: '&',
-            model: '='
+            toExport: '=',
+            toImport: '='
         },
         link: function ($scope, $element, $attr, $modal) {
             var textGroup, drawGroup, sheetGroup, extraContentGroup, context, stepSize;
@@ -214,7 +215,7 @@ application.directive('notebookSheet', function() {
                 $element.bind('mouseup', function (event) {
                     currentObject.finish();
                     $scope.$apply(function () {
-                        $scope.model = context.toString();
+                        $scope.toExport = context.innerSVG();
                     });
                 });
             };
@@ -237,6 +238,11 @@ application.directive('notebookSheet', function() {
             $scope.$watch('color()', function () {
                 elements.Draw = new Pencil($scope.color(), 5);
                 updateMode();
+            });
+
+            // load function
+            $scope.$watch('toImport', function () {
+                context.innerHTML = $scope.toImport;
             });
 
             $scope.$on("$destroy", function () {
