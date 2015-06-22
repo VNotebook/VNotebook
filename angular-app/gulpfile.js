@@ -18,9 +18,17 @@ var paths = {
     './www/lib/moment/locale/es.js',
     './www/lib/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js',
     './www/lib/snap.svg/dist/snap.svg-min.js',
+    './www/lib/munter/js/html5shiv.js',
+    './www/lib/munter/js/jquery-1.10.2.min.js',
+    './www/lib/munter/js/jquery-migrate-1.2.1.min.js',
+    './www/lib/munter/js/bootstrap.min.js',
+    './www/lib/munter/js/jquery.easing.1.3.js',
+    './www/lib/munter/js/script.js',
     './www/lib/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js'],
+
   // Files to copy when distributing
-  toDist: ['./www/css/**/*', './www/fonts/**/*', './www/images/**/*',
+  toDist: ['./www/css/**/*', './www/fonts/**/*', './www/font-awesome/**/*', 
+   './www/img/**/*',
     './www/templates/**/*', './www/index.html',
     './www/lib/angular-bootstrap-colorpicker/css/colorpicker.min.css']
 };
