@@ -11,8 +11,8 @@ describe("Core functionality", function() {
     var loginButton = element(by.buttonText('Ingresar'));
     loginButton.click();
 
-    element(by.model("credentials.username")).sendKeys("test");
-    element(by.model("credentials.password")).sendKeys("test123\n");
+    element(by.toExport("credentials.username")).sendKeys("test");
+    element(by.toExport("credentials.password")).sendKeys("test123\n");
 
     expect($('[ng-controller="HeaderController"]').getText().then(function(text) {
       return text.indexOf("Bienvenido, test");

@@ -75,7 +75,7 @@ application.controller('NotebookController', function($scope, $location, $routeP
     document.execCommand('styleWithCSS', true, null); // to put the rich text inside of css
 
     $scope.$watch('toSave', function() {
-      console.log($scope.toSave);
+      // TODO: save the SVG
     });
 
     var initialLeftPanel = [

@@ -186,6 +186,7 @@ application.directive('notebookSheet', function() {
 
                     localCoordinates.x = event.pageX - offset.left;
                     localCoordinates.y = event.pageY - (document.documentElement.scrollTop || document.body.scrollTop) - offset.top;
+                    console.log("put eq");
 
                     if (!mouseDownElement)
                         createEquation($scope.equation(), localCoordinates);
