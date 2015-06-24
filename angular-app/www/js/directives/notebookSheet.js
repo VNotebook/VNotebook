@@ -1,8 +1,8 @@
 'use strict';
 
-MathJax.Hub.Config({
+/*MathJax.Hub.Config({
     tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
+});*/
 
 application.directive('notebookSheet', function() {
     return {

@@ -1,9 +1,12 @@
 MathJax.Hub.Config({
-    skipStartupTypeset: true,
-    messageStyle: "none",
-    "HTML-CSS": {
-        showMathMenu: true
-    }
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    "HTML-CSS": { availableFonts: ["TeX"] }
 });
 MathJax.Hub.Configured();
 
