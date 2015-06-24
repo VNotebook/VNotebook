@@ -9,6 +9,11 @@ application.controller('NotebookController', function($scope, $location, $routeP
 
       Elements.getNotebookById(notebookId).then(function(response) {
         $scope.notebook = response.data;
+      }, function() {
+        alertService.error("Error", "Error al cargar el cuaderno especificado")
+        .then(function() {
+          $location.path("/");
+        });
       });
     };
 
@@ -18,6 +23,12 @@ application.controller('NotebookController', function($scope, $location, $routeP
       $http.get(apiUrl + "/notebooks/" + notebookId + "/shares")
           .then(function(response) {
             $scope.shares = response.data;
+          }, function() {
+            alertService.error("Error",
+              "Error al cargar la lista de personas con las que se comparte este cuaderno")
+            .then(function() {
+              $location.path("/");
+            });
           });
     };
 
@@ -37,9 +48,9 @@ application.controller('NotebookController', function($scope, $location, $routeP
     $scope.delete = function() {
       var notebook = $scope.notebook;
       alertService.deleteConfirm(
-          "Está a punto de eliminar el cuaderno \"" +
-          notebook.name + "\". Perderá todo el contenido, incluyendo páginas.\n\n" +
-          "Para confirmar que esto no es un error, escriba el nombre del cuaderno a continuación:",
+          "Estï¿½ a punto de eliminar el cuaderno \"" +
+          notebook.name + "\". Perderï¿½ todo el contenido, incluyendo pï¿½ginas.\n\n" +
+          "Para confirmar que esto no es un error, escriba el nombre del cuaderno a continuaciï¿½n:",
           notebook.name)
           .then(function() {
             return $http.delete(apiUrl + "/notebooks/" + notebook.id);
@@ -75,12 +86,12 @@ application.controller('NotebookController', function($scope, $location, $routeP
     document.execCommand('styleWithCSS', true, null); // to put the rich text inside of css
 
     $scope.$watch('toSave', function() {
-      // TODO: save the SVG
+      console.log("hi");
     });
 
     var initialLeftPanel = [
       {
-        title: "Cámara",
+        title: "Cï¿½mara",
         buttonClass: "glyphicon glyphicon-camera",
         action: "Nothing"
       },
